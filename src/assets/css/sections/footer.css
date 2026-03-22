@@ -1,0 +1,11 @@
+﻿.footer {
+  border-top: 1px solid var(--extra-gray-2);
+  background: var(--brand-id-white);
+}
+
+.footer__container {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  color: var(--extra-gray-4);
+}

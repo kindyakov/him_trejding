@@ -1,0 +1,24 @@
+{
+  "name": "him-trejding",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "parcel src/pages/*.html --open",
+    "build": "parcel build src/pages/*.html --dist-dir dist --public-url /"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4",
+    "parcel-reporter-static-files-copy": "^1.5.3",
+    "posthtml": "^0.16.7",
+    "posthtml-include": "^2.0.1"
+  },
+  "staticFiles": {
+    "staticPath": "public",
+    "watcherGlob": "**/*"
+  },
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

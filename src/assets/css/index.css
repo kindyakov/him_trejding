@@ -1,0 +1,5 @@
+﻿@import './variable.css';
+@import './base.css';
+
+@import './sections/header.css';
+@import './sections/footer.css';

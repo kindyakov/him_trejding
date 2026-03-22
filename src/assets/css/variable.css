@@ -1,0 +1,13 @@
+﻿:root {
+  --brand-id-blue: #274aa5;
+  --brand-id-black: #1c1c1c;
+  --brand-id-white: #ffffff;
+  --extra-gray-1: #f4f6fa;
+  --extra-gray-2: #d2d4dd;
+  --extra-gray-3: #b2b7c6;
+  --extra-gray-4: #979da9;
+  --extra-light-blue: #9ebaf5;
+  --extra-dark-blue: #183b97;
+  --font-family: 'Inter Tight', sans-serif;
+  --second-family: 'Inter', sans-serif;
+}
