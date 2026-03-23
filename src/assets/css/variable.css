@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --brand-id-blue: #274aa5;
   --brand-id-black: #1c1c1c;
   --brand-id-white: #ffffff;
@@ -8,6 +8,7 @@
   --extra-gray-4: #979da9;
   --extra-light-blue: #9ebaf5;
   --extra-dark-blue: #183b97;
+  --container-width: 1824px;
   --font-family: 'Inter Tight', sans-serif;
   --second-family: 'Inter', sans-serif;
 }

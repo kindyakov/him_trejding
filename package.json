@@ -3,14 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "parcel src/pages/*.html --open",
-    "build": "parcel build src/pages/*.html --dist-dir dist --public-url /"
+    "dev": "node scripts/dev.mjs",
+    "prebuild": "node scripts/clean-dist.mjs",
+    "build:html": "node scripts/build-html.mjs",
+    "build:css": "parcel build src/assets/css/index.css --dist-dir dist/css --public-url /css --no-source-maps",
+    "build:js": "parcel build src/assets/js/index.js --dist-dir dist/js --public-url /js --no-source-maps",
+    "build:assets": "node scripts/copy-assets.mjs",
+    "build:cleanup": "node scripts/clean-empty-dirs.mjs",
+    "build": "npm run build:css && npm run build:js && npm run build:assets && npm run build:html && npm run build:cleanup",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "devDependencies": {
     "parcel": "^2.16.4",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "posthtml": "^0.16.7",
-    "posthtml-include": "^2.0.1"
+    "posthtml-include": "^2.0.1",
+    "prettier": "^3.8.1"
   },
   "staticFiles": {
     "staticPath": "public",
@@ -20,5 +29,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "a11y-dialog": "^8.1.5",
+    "just-validate": "^4.3.0",
+    "notyf": "^3.10.0"
+  }
 }

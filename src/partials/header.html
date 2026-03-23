@@ -1,5 +1,115 @@
-<header class='header'>
-  <div class='container header__container'>
+<header class="header">
+  <div class="container header__container">
+    <div class="header__body">
+      <a href="/" class="header__logo">
+        <img src="../assets/images/logo.svg" alt="Хим Трейдинг" />
+      </a>
+      <nav class="header__lang" aria-label="Language switcher">
+        <a href="/" class="header__lang-link"> EN </a>
+        <span class="header__lang-separator" aria-hidden="true"> | </span>
+        <a href="/" class="header__lang-link header__lang-link--active" aria-current="page"> RU </a>
+      </nav>
 
+      <div class="header__group">
+        <a href="mailto:office@chimtrading.com" class="header__mail link-hover">
+          <span>office@chimtrading.com</span>
+          <span class="span-default">office@chimtrading.com</span>
+          <span class="span-active">office@chimtrading.com</span>
+        </a>
+        <button
+          class="header__menu-button"
+          type="button"
+          aria-label="Открыть меню"
+          aria-expanded="false"
+          aria-controls="site-menu"
+        >
+          <span data-menu-button-label>Menu</span>
+          <svg width="24" height="24" aria-hidden="true">
+            <use href="#icon-menu"></use>
+          </svg>
+        </button>
+        <button
+          class="header__cta"
+          type="button"
+          data-request-modal-open
+          aria-controls="request-price-modal"
+          data-da=".site-menu,768,2"
+        >
+          Запросить цену
+        </button>
+      </div>
+    </div>
   </div>
 </header>
+
+<div class="menu-overlay" data-menu-overlay hidden></div>
+<aside class="site-menu" id="site-menu" aria-hidden="true" aria-labelledby="site-menu-title">
+  <button class="site-menu__close" type="button" aria-label="Закрыть меню">
+    <svg width="24" height="24" aria-hidden="true">
+      <use href="#icon-close"></use>
+    </svg>
+  </button>
+  <nav class="site-menu__nav" aria-labelledby="site-menu-title">
+    <a href="/" class="site-menu__link link-hover">
+      <span>О компании</span>
+      <span class="span-default">О компании</span>
+      <span class="span-active">О компании</span>
+    </a>
+    <a href="/" class="site-menu__link link-hover">
+      <span>Деятельность</span>
+      <span class="span-default">Деятельность</span>
+      <span class="span-active">Деятельность</span>
+    </a>
+    <a href="/" class="site-menu__link link-hover">
+      <span>Продукция</span>
+      <span class="span-default">Продукция</span>
+      <span class="span-active">Продукция</span>
+    </a>
+    <a href="/" class="site-menu__link link-hover">
+      <span>География поставок</span>
+      <span class="span-default">География поставок</span>
+      <span class="span-active">География поставок</span>
+    </a>
+    <a href="/" class="site-menu__link link-hover">
+      <span>Паспорта качества</span>
+      <span class="span-default">Паспорта качества</span>
+      <span class="span-active">Паспорта качества</span>
+    </a>
+    <a href="/" class="site-menu__link link-hover">
+      <span>Преимущества</span>
+      <span class="span-default">Преимущества</span>
+      <span class="span-active">Преимущества</span>
+    </a>
+    <a href="/" class="site-menu__link link-hover">
+      <span>Контакты</span>
+      <span class="span-default">Контакты</span>
+      <span class="span-active">Контакты</span>
+    </a>
+  </nav>
+  <div class="site-menu__bottom">
+    <nav class="site-menu__lang" aria-label="Language switcher">
+      <a href="/" class="header__lang-link"> EN </a>
+      <span class="header__lang-separator" aria-hidden="true"> | </span>
+      <a href="/" class="header__lang-link header__lang-link--active" aria-current="page"> RU </a>
+    </nav>
+    <div class="site-menu__contacts">
+      <h4 class="site-menu__title--contact">Наша контакты</h4>
+      <a href="tel:+79150953279" class="site-menu__contact site-menu__contact--phone link-hover">
+        <span>+7 915 095-32-79</span>
+        <span class="span-default">+7 915 095-32-79</span>
+        <span class="span-active">+7 915 095-32-79</span>
+      </a>
+      <a
+        href="mailto:office@chimtrading.com"
+        class="site-menu__contact site-menu__contact--mail link-hover"
+      >
+        <span>office@chimtrading.com</span>
+        <span class="span-default">office@chimtrading.com</span>
+        <span class="span-active">office@chimtrading.com</span>
+      </a>
+    </div>
+    <a href="https://www.linkedin.com/" class="site-menu__social" aria-label="LinkedIn">
+      <span>in</span>
+    </a>
+  </div>
+</aside>
