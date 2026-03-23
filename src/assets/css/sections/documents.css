@@ -120,10 +120,7 @@
   width: 32px;
   height: 32px;
   border-radius: 4px;
-  background:
-    var(--brand-id-blue)
-    url('../../images/arrow-right.svg')
-    no-repeat center / 16px 16px;
+  background: var(--brand-id-blue) url('../../images/arrow-right.svg') no-repeat center / 16px 16px;
   flex-shrink: 0;
 }
 

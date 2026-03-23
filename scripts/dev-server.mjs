@@ -18,8 +18,8 @@ let reloadTimeoutId = null;
 const excludedSourceDirs = new Set(['css', 'js']);
 const assetSourceDirs = existsSync(srcAssetsDir)
   ? readdirSync(srcAssetsDir, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && !excludedSourceDirs.has(entry.name))
-    .map((entry) => resolve(srcAssetsDir, entry.name))
+      .filter((entry) => entry.isDirectory() && !excludedSourceDirs.has(entry.name))
+      .map((entry) => resolve(srcAssetsDir, entry.name))
   : [];
 
 const processor = posthtml([

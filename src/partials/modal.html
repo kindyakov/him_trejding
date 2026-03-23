@@ -1,4 +1,9 @@
-<div class="request-modal" data-a11y-dialog="request-price-modal" id="request-price-modal" aria-hidden="true">
+<div
+  class="request-modal"
+  data-a11y-dialog="request-price-modal"
+  id="request-price-modal"
+  aria-hidden="true"
+>
   <div class="request-modal__overlay" data-a11y-dialog-hide></div>
   <div class="request-modal__container" role="document">
     <div class="request-modal__header">
@@ -9,14 +14,22 @@
           свяжемся с вами
         </p>
       </div>
-      <button class="request-modal__close" type="button" data-a11y-dialog-hide aria-label="Закрыть форму">
+      <button
+        class="request-modal__close"
+        type="button"
+        data-a11y-dialog-hide
+        aria-label="Закрыть форму"
+      >
         <svg width="24" height="24" aria-hidden="true">
           <use href="#icon-close"></use>
         </svg>
       </button>
     </div>
 
-    <include src="../partials/request-form.html" locals='{"form_prefix":"modal-request","form_class":" request-form--modal"}'>
+    <include
+      src="../partials/request-form.html"
+      locals='{"form_prefix":"modal-request","form_class":" request-form--modal"}'
+    >
     </include>
   </div>
 </div>

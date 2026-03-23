@@ -106,7 +106,6 @@ button {
   @media (max-width: 640px) {
     padding-top: 80px;
   }
-
 }
 
 .title-h2 {
@@ -220,7 +219,7 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #274AA5;
+  color: #274aa5;
 
   svg {
     flex-shrink: 0;

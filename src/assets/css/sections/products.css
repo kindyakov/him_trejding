@@ -26,7 +26,13 @@
   overflow: hidden;
   border-radius: 4px;
   background:
-    radial-gradient(circle at 50% 38%, rgba(197, 213, 247, 0.95) 0%, rgba(230, 235, 248, 0.8) 28%, rgba(247, 248, 252, 0.96) 68%, rgba(233, 237, 247, 0.88) 100%),
+    radial-gradient(
+      circle at 50% 38%,
+      rgba(197, 213, 247, 0.95) 0%,
+      rgba(230, 235, 248, 0.8) 28%,
+      rgba(247, 248, 252, 0.96) 68%,
+      rgba(233, 237, 247, 0.88) 100%
+    ),
     linear-gradient(180deg, #f4f6fb 0%, #eceff7 100%);
 }
 
