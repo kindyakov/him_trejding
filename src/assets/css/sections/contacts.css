@@ -1,0 +1,32 @@
+.contacts-section__content {
+  display: grid;
+  grid-template-columns: 830px 900px;
+  gap: 94px;
+}
+
+.contacts-section__info {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 1px;
+}
+
+.contacts-section__title {
+  max-width: 830px;
+}
+
+.contacts-section__description {
+  max-width: 472px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 116%;
+  color: var(--brand-id-black);
+}
+
+.contacts-section__form {
+  width: 100%;
+}
+
+.request-form--section {
+  min-height: 560px;
+}

@@ -1,0 +1,60 @@
+.geography__title {
+  max-width: 897px;
+  margin-top: 16px;
+}
+
+.geography__map-card {
+  position: relative;
+  margin-top: 48px;
+  min-height: 750px;
+  padding: 41px 259px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--brand-id-blue);
+}
+
+.geography__map-image {
+  display: block;
+  width: 1306px;
+  height: 668px;
+  object-fit: contain;
+}
+
+.geography__marker {
+  position: absolute;
+  top: 198px;
+  left: 774px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.geography__marker-pin {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #2a50b1;
+}
+
+.geography__marker-pin::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: var(--brand-id-white);
+}
+
+.geography__marker-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: var(--brand-id-white);
+  font-size: 16px;
+  line-height: 1.375;
+  color: var(--brand-id-black);
+}

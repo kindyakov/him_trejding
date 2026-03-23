@@ -1,15 +1,19 @@
 import { initMenu } from './modules/menu';
+import { initActivityTimeline } from './modules/activity-timeline';
+import { initDocumentsSlider } from './modules/documents-slider';
 import { initHeroVideo } from './modules/hero-video.mjs';
 import { initRequestPriceModal } from './modules/modal';
-import { initRequestForm } from './modules/request-form';
+import { initRequestForms } from './modules/request-form';
 import { useDynamicAdapt } from './modules/dynamicAdapt';
 
 window.addEventListener('DOMContentLoaded', () => {
   initMenu();
   initHeroVideo();
+  initActivityTimeline();
+  initDocumentsSlider();
 
   const dialog = initRequestPriceModal();
-  initRequestForm(dialog);
+  initRequestForms(dialog);
 
   useDynamicAdapt();
 });

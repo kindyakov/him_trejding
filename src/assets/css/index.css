@@ -1,10 +1,17 @@
 @import './variable.css';
 @import './base.css';
 @import '../../../node_modules/notyf/notyf.min.css';
+@import '../../../node_modules/swiper/swiper-bundle.min.css';
 
 @import './sections/header.css';
 @import './sections/hero.css';
 @import './sections/about.css';
+@import './sections/activity.css';
+@import './sections/geography.css';
+@import './sections/products.css';
+@import './sections/stages.css';
+@import './sections/documents.css';
+@import './sections/contacts.css';
 @import './sections/footer.css';
 @import './sections/modal.css';
 

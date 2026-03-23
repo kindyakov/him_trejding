@@ -33,6 +33,7 @@
   "dependencies": {
     "a11y-dialog": "^8.1.5",
     "just-validate": "^4.3.0",
-    "notyf": "^3.10.0"
+    "notyf": "^3.10.0",
+    "swiper": "^12.1.2"
   }
 }

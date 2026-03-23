@@ -1,0 +1,132 @@
+.activity {
+  padding-bottom: 160px;
+  background: var(--brand-id-white);
+  overflow: clip;
+}
+
+.activity__title {
+  max-width: 960px;
+  margin-top: 24px;
+}
+
+.activity__timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 746px 332px 746px;
+  justify-content: space-between;
+  row-gap: 98px;
+  margin-top: 88px;
+  --activity-progress: 0px;
+}
+
+.activity__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: var(--extra-gray-3);
+}
+
+.activity__line-fill {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: var(--activity-progress);
+  transform: translateX(-50%);
+  background: var(--brand-id-blue);
+  transition: height 0.18s linear;
+}
+
+.activity-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 746px;
+  min-height: 124px;
+  padding-top: 16px;
+  border-top: 1px solid var(--extra-gray-3);
+  color: var(--extra-gray-3);
+  opacity: 0.18;
+  transform: translateY(48px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.55s ease,
+    color 0.45s ease,
+    border-color 0.45s ease;
+}
+
+.activity-card--left {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.activity-card--right {
+  grid-column: 3;
+  justify-self: end;
+}
+
+.activity-card:first-of-type,
+.activity-card:nth-of-type(4),
+.activity-card:last-of-type {
+  min-height: 144px;
+}
+
+.activity-card.is-revealed {
+  border-color: var(--brand-id-black);
+  color: var(--brand-id-black);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.activity-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 438px;
+}
+
+.activity-card--left .activity-card__content {
+  margin-left: auto;
+}
+
+.activity-card__index {
+  position: absolute;
+  top: 16px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.22;
+  white-space: nowrap;
+}
+
+.activity-card--left .activity-card__index {
+  left: 0;
+}
+
+.activity-card--right .activity-card__index {
+  right: 0;
+}
+
+.activity-card__title {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.activity-card__text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .activity__line-fill {
+    transition: none;
+  }
+
+  .activity-card {
+    transform: none;
+    transition: opacity 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+}

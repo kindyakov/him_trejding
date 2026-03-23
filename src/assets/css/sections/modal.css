@@ -124,13 +124,13 @@
 .request-form__fields {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 }
 
 .request-form__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 24px;
 }
 
 .request-form__field {
@@ -184,8 +184,8 @@
 }
 
 .request-form__input--textarea {
-  min-height: 106px;
-  resize: vertical;
+  min-height: 150px;
+  resize: none;
 }
 
 .request-form__meta {
@@ -315,6 +315,7 @@
 .request-form__submit {
   position: relative;
   align-self: flex-start;
+  width: 220px;
 }
 
 .request-form.is-loading .button-primary__loader {
