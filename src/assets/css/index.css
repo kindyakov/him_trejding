@@ -3,6 +3,8 @@
 @import '../../../node_modules/notyf/notyf.min.css';
 
 @import './sections/header.css';
+@import './sections/hero.css';
+@import './sections/about.css';
 @import './sections/footer.css';
 @import './sections/modal.css';
 

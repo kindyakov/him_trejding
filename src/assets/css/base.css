@@ -27,7 +27,8 @@ h2,
 h3,
 h4,
 h5,
-h6 p {
+h6,
+p {
   margin: 0;
 }
 
@@ -97,4 +98,138 @@ button {
       transform: translateY(0);
     }
   }
+}
+
+.section {
+  padding-top: 150px;
+
+  @media (max-width: 640px) {
+    padding-top: 80px;
+  }
+
+}
+
+.title-h2 {
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 107%;
+
+  @media (max-width: 640px) {
+    font-size: 44px;
+    line-height: 95%;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 32px;
+    line-height: 106%;
+  }
+}
+
+.button-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 52px;
+  padding: 6px 16px 6px 6px;
+  border: 1px solid var(--extra-gray-3);
+  border-radius: 4px;
+  background: var(--brand-id-white);
+  color: var(--brand-id-black);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    background-color 0.28s ease,
+    color 0.28s ease,
+    border-color 0.28s ease;
+
+  &:hover {
+    box-shadow: 0 16px 36px rgba(17, 29, 68, 0.18);
+
+    .button-primary__icon::before {
+      transform: translateX(0);
+    }
+
+    .button-primary__icon::after {
+      transform: translateX(120%);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--extra-light-blue);
+    outline-offset: 4px;
+  }
+}
+
+.button-primary__icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--brand-id-blue);
+  color: var(--brand-id-white);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/arrow-right.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  &::before {
+    transform: translateX(-120%);
+  }
+}
+
+.button-primary__text {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.button-primary__loader {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(39, 74, 165, 0.2);
+  border-top-color: var(--brand-id-blue);
+  border-radius: 50%;
+  animation: button-primary-spin 0.9s linear infinite;
+}
+
+@keyframes button-primary-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #274AA5;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.eyebrow-text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 133%;
+  color: var(--brand-id-black);
 }

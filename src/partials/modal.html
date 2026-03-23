@@ -1,9 +1,4 @@
-<div
-  class="request-modal"
-  data-a11y-dialog="request-price-modal"
-  id="request-price-modal"
-  aria-hidden="true"
->
+<div class="request-modal" data-a11y-dialog="request-price-modal" id="request-price-modal" aria-hidden="true">
   <div class="request-modal__overlay" data-a11y-dialog-hide></div>
   <div class="request-modal__container" role="document">
     <div class="request-modal__header">
@@ -14,12 +9,7 @@
           свяжемся с вами
         </p>
       </div>
-      <button
-        class="request-modal__close"
-        type="button"
-        data-a11y-dialog-hide
-        aria-label="Закрыть форму"
-      >
+      <button class="request-modal__close" type="button" data-a11y-dialog-hide aria-label="Закрыть форму">
         <svg width="24" height="24" aria-hidden="true">
           <use href="#icon-close"></use>
         </svg>
@@ -30,71 +20,37 @@
       <div class="request-form__fields">
         <div class="request-form__field">
           <label class="request-form__label" for="request-name">Ваше имя</label>
-          <input
-            class="request-form__input"
-            id="request-name"
-            name="name"
-            type="text"
-            autocomplete="name"
-            placeholder="Ваше имя"
-          />
+          <input class="request-form__input" id="request-name" name="name" type="text" autocomplete="name"
+            placeholder="Ваше имя" />
         </div>
         <div class="request-form__row">
           <div class="request-form__field">
             <label class="request-form__label" for="request-phone">Телефон</label>
-            <input
-              class="request-form__input"
-              id="request-phone"
-              name="phone"
-              type="tel"
-              autocomplete="tel"
-              placeholder="Телефон"
-            />
+            <input class="request-form__input" id="request-phone" name="phone" type="tel" autocomplete="tel"
+              placeholder="Телефон" />
           </div>
           <div class="request-form__field">
             <label class="request-form__label" for="request-email">Email</label>
-            <input
-              class="request-form__input"
-              id="request-email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              placeholder="Email"
-            />
+            <input class="request-form__input" id="request-email" name="email" type="email" autocomplete="email"
+              placeholder="Email" />
           </div>
         </div>
         <div class="request-form__field">
           <label class="request-form__label" for="request-company">Название компании</label>
-          <input
-            class="request-form__input"
-            id="request-company"
-            name="company"
-            type="text"
-            autocomplete="organization"
-            placeholder="Название компании"
-          />
+          <input class="request-form__input" id="request-company" name="company" type="text" autocomplete="organization"
+            placeholder="Название компании" />
         </div>
         <div class="request-form__field">
           <label class="request-form__label" for="request-message">Сообщение</label>
-          <textarea
-            class="request-form__input request-form__input--textarea"
-            id="request-message"
-            name="message"
-            rows="4"
-            placeholder="Сообщение"
-          ></textarea>
+          <textarea class="request-form__input request-form__input--textarea" id="request-message" name="message"
+            rows="4" placeholder="Сообщение"></textarea>
         </div>
       </div>
 
       <div class="request-form__meta">
         <div class="request-form__file">
-          <input
-            class="request-form__file-input"
-            id="request-file"
-            name="file"
-            type="file"
-            accept=".pdf,.doc,.docx,.xls,.xlsx"
-          />
+          <input class="request-form__file-input" id="request-file" name="file" type="file"
+            accept=".pdf,.doc,.docx,.xls,.xlsx" />
           <label class="request-form__file-button" for="request-file">
             <svg width="24" height="24" aria-hidden="true">
               <use href="#icon-file-add"></use>
@@ -106,18 +62,11 @@
 
         <div class="request-form__checkbox-row">
           <label class="request-form__checkbox">
-            <input
-              class="request-form__checkbox-input"
-              id="request-policy"
-              name="policy"
-              type="checkbox"
-            />
+            <input class="request-form__checkbox-input" id="request-policy" name="policy" type="checkbox" />
             <span class="request-form__checkbox-box" aria-hidden="true"></span>
             <span class="request-form__checkbox-text">
               Нажимая кнопку «Отправить», я даю
-              <a href="/" class="request-form__policy-link"
-                >согласие на обработку персональных данных</a
-              >
+              <a href="/" class="request-form__policy-link">согласие на обработку персональных данных</a>
               и подтверждаю ознакомление с
               <a href="/" class="request-form__policy-link">политикой конфиденциальности</a>
             </span>
@@ -125,14 +74,11 @@
         </div>
       </div>
 
-      <button class="request-form__submit" type="submit">
-        <span class="request-form__submit-icon" aria-hidden="true">
-          <svg width="24" height="24">
-            <use href="#icon-arrow-right"></use>
-          </svg>
+      <button class="button-primary request-form__submit" type="submit">
+        <span class="button-primary__icon" aria-hidden="true">
         </span>
-        <span class="request-form__submit-text">Отправить данные</span>
-        <span class="request-form__loader" aria-hidden="true"></span>
+        <span class="button-primary__text">Отправить данные</span>
+        <span class="button-primary__loader" aria-hidden="true"></span>
       </button>
     </form>
   </div>

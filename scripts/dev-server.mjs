@@ -1,6 +1,6 @@
 import http from 'node:http';
 import { access, readFile } from 'node:fs/promises';
-import { constants, existsSync, readdirSync, watch } from 'node:fs';
+import { constants, createReadStream, existsSync, readdirSync, statSync, watch } from 'node:fs';
 import { extname, resolve } from 'node:path';
 
 import posthtml from 'posthtml';
@@ -12,14 +12,14 @@ const devDir = resolve(projectRoot, '.dev');
 const partialsDir = resolve(projectRoot, 'src/partials');
 const srcAssetsDir = resolve(projectRoot, 'src/assets');
 const publicAssetsDir = resolve(projectRoot, 'public/assets');
-const port = 1234;
+const port = Number(process.env.PORT || 1234);
 const liveReloadClients = new Set();
 let reloadTimeoutId = null;
 const excludedSourceDirs = new Set(['css', 'js']);
 const assetSourceDirs = existsSync(srcAssetsDir)
   ? readdirSync(srcAssetsDir, { withFileTypes: true })
-      .filter((entry) => entry.isDirectory() && !excludedSourceDirs.has(entry.name))
-      .map((entry) => resolve(srcAssetsDir, entry.name))
+    .filter((entry) => entry.isDirectory() && !excludedSourceDirs.has(entry.name))
+    .map((entry) => resolve(srcAssetsDir, entry.name))
   : [];
 
 const processor = posthtml([
@@ -35,6 +35,7 @@ const mimeTypes = {
   '.html': 'text/html; charset=utf-8',
   '.ico': 'image/x-icon',
   '.js': 'application/javascript; charset=utf-8',
+  '.mp4': 'video/mp4',
   '.svg': 'image/svg+xml; charset=utf-8'
 };
 
@@ -59,16 +60,56 @@ const renderHtml = async (pageName) => {
   return injectLiveReload(html);
 };
 
-const serveFile = async (response, filePath) => {
-  const content = await readFile(filePath);
+const serveFile = async (request, response, filePath) => {
   const type = mimeTypes[extname(filePath)] || 'application/octet-stream';
+  const fileStats = statSync(filePath);
+  const rangeHeader = request.headers.range;
+
+  if (rangeHeader) {
+    const matches = /bytes=(\d*)-(\d*)/.exec(rangeHeader);
+
+    if (matches) {
+      const [, startToken, endToken] = matches;
+      const start = startToken ? Number(startToken) : 0;
+      const end = endToken ? Number(endToken) : fileStats.size - 1;
+
+      if (
+        Number.isInteger(start) &&
+        Number.isInteger(end) &&
+        start >= 0 &&
+        end >= start &&
+        end < fileStats.size
+      ) {
+        response.writeHead(206, {
+          'Accept-Ranges': 'bytes',
+          'Cache-Control': 'no-store, no-cache, must-revalidate',
+          'Content-Length': end - start + 1,
+          'Content-Range': `bytes ${start}-${end}/${fileStats.size}`,
+          'Content-Type': type,
+          Pragma: 'no-cache'
+        });
+
+        createReadStream(filePath, { start, end }).pipe(response);
+        return;
+      }
+    }
+
+    response.writeHead(416, {
+      'Content-Range': `bytes */${fileStats.size}`
+    });
+    response.end();
+    return;
+  }
 
   response.writeHead(200, {
+    'Accept-Ranges': 'bytes',
     'Cache-Control': 'no-store, no-cache, must-revalidate',
     'Content-Type': type,
+    'Content-Length': fileStats.size,
     Pragma: 'no-cache'
   });
-  response.end(content);
+
+  createReadStream(filePath).pipe(response);
 };
 
 const injectLiveReload = (html) => {
@@ -169,26 +210,42 @@ const server = http.createServer(async (request, response) => {
     }
 
     if (pathname.startsWith('/css/') || pathname.startsWith('/js/')) {
-      await serveFile(response, resolve(devDir, `.${pathname}`));
+      const devAssetPath = resolve(devDir, `.${pathname}`);
+
+      if (!(await fileExists(devAssetPath))) {
+        response.writeHead(503, { 'Content-Type': 'text/plain; charset=utf-8' });
+        response.end(
+          'Dev asset is not built yet. Start or restart "npm run dev" and wait for Parcel to emit .dev/css/index.css and .dev/js/index.js.'
+        );
+        return;
+      }
+
+      await serveFile(request, response, devAssetPath);
       return;
     }
 
     if (pathname.startsWith('/assets/')) {
       const relativePath = pathname.replace('/assets/', '');
+      const devAssetCandidate = resolve(devDir, 'assets', relativePath);
       const sourceAssetCandidate = resolve(srcAssetsDir, relativePath);
       const publicCandidate = resolve(publicAssetsDir, relativePath);
+
+      if (await fileExists(devAssetCandidate)) {
+        await serveFile(request, response, devAssetCandidate);
+        return;
+      }
 
       if (
         !relativePath.startsWith('css/') &&
         !relativePath.startsWith('js/') &&
         existsSync(sourceAssetCandidate)
       ) {
-        await serveFile(response, sourceAssetCandidate);
+        await serveFile(request, response, sourceAssetCandidate);
         return;
       }
 
       if (await fileExists(publicCandidate)) {
-        await serveFile(response, publicCandidate);
+        await serveFile(request, response, publicCandidate);
         return;
       }
     }

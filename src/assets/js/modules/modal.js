@@ -1,10 +1,11 @@
 import A11yDialog from 'a11y-dialog';
+import { bindDialogTriggers } from './modal-triggers.mjs';
 
 export const initRequestPriceModal = () => {
   const modalElement = document.querySelector('#request-price-modal');
-  const trigger = document.querySelector('[data-request-modal-open]');
+  const triggers = Array.from(document.querySelectorAll('[data-request-modal-open]'));
 
-  if (!modalElement || !trigger) {
+  if (!modalElement || triggers.length === 0) {
     return null;
   }
 
@@ -18,7 +19,7 @@ export const initRequestPriceModal = () => {
     document.body.classList.remove('request-modal-open');
   });
 
-  trigger.addEventListener('click', () => {
+  bindDialogTriggers(triggers, () => {
     dialog.show();
   });
 
