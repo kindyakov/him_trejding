@@ -2,6 +2,7 @@
   margin-top: 45px;
   background: var(--extra-gray-1);
   padding-block: 96px;
+  overflow: hidden;
 
   @media (max-width: 640px) {
     padding-block: 48px;
