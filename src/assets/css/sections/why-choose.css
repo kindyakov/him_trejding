@@ -1,14 +1,11 @@
 .why-choose {
   margin-top: 45px;
-  background: #f4f6fa;
-  padding-bottom: 96px;
+  background: var(--extra-gray-1);
+  padding-block: 96px;
 
-  @media (max-width: 920px) {
-    padding-bottom: 80px;
-  }
-
-  @media (max-width: 480px) {
-    padding-bottom: 64px;
+  @media (max-width: 640px) {
+    padding-block: 48px;
+    margin-top: 80px;
   }
 }
 
@@ -79,26 +76,19 @@
 .why-choose__composition {
   position: relative;
   margin-top: 68px;
-  min-height: 1500px;
   --why-choose-model-offset: 0px;
-
-  @media (max-width: 1600px) {
-    min-height: 1440px;
-  }
 
   @media (max-width: 1200px) {
     margin-top: 48px;
-    min-height: 1360px;
   }
 
   @media (max-width: 920px) {
-    min-height: auto;
-    padding-top: 252px;
+    padding-top: 100px;
   }
 
-  @media (max-width: 480px) {
-    margin-top: 42px;
-    padding-top: 220px;
+  @media (max-width: 640px) {
+    margin-top: 38px;
+    padding-top: 52px;
   }
 }
 
@@ -107,7 +97,7 @@
   z-index: 2;
   display: flex;
   justify-content: space-between;
-  gap: 48px;
+  gap: 32px;
 
   @media (max-width: 920px) {
     gap: 16px;
@@ -123,14 +113,13 @@
 .why-choose__column {
   display: flex;
   flex-direction: column;
-  width: calc(50% - 24px);
   max-width: 592px;
+  width: 100%;
   gap: 140px;
 
-  @media (max-width: 1200px) {
-    width: calc(50% - 8px);
-    max-width: 296px;
-    gap: 112px;
+  @media (max-width: 1400px) {
+    max-width: 400px;
+    gap: 110px;
   }
 
   @media (max-width: 640px) {
@@ -142,11 +131,7 @@
 }
 
 .why-choose__column--left {
-  padding-top: 160px;
-
-  @media (max-width: 1200px) {
-    padding-top: 74px;
-  }
+  padding-top: 96px;
 
   @media (max-width: 640px) {
     padding-top: 0;
@@ -155,11 +140,7 @@
 }
 
 .why-choose__column--right {
-  padding-top: 428px;
-
-  @media (max-width: 1200px) {
-    padding-top: 302px;
-  }
+  padding-top: 348px;
 
   @media (max-width: 640px) {
     padding-top: 0;
@@ -178,15 +159,16 @@
   pointer-events: none;
 
   @media (max-width: 1200px) {
-    width: min(540px, 62vw);
+    width: min(640px, 80vw);
   }
 
-  @media (max-width: 920px) {
-    width: min(474px, calc(100% - 96px));
+
+  @media (max-width: 640px) {
+    width: min(640px, 90vw);
   }
 
   @media (max-width: 480px) {
-    width: min(418px, calc(100% + 28px));
+    width: min(418px, 105vw);
   }
 }
 
@@ -212,7 +194,7 @@
   background: var(--brand-id-white);
   box-shadow: 0 0 0 1px rgba(178, 183, 198, 0.08);
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     min-height: 216px;
     padding: 16px;
   }

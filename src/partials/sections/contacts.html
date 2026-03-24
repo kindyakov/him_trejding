@@ -1,0 +1,27 @@
+<section class="contacts-section section" id="contacts" aria-labelledby="contacts-title">
+  <div class="container contacts-section__container">
+    <div class="contacts-section__content">
+      <div class="contacts-section__info">
+        <div class="eyebrow">
+          <svg width="16" height="16" aria-hidden="true">
+            <use href="#icon-triangle"></use>
+          </svg>
+          <span class="eyebrow-text">Свяжитесь с нами</span>
+        </div>
+        <h2 class="contacts-section__title title-h2" id="contacts-title">
+          Мы готовы обсудить <br> сотрудничество и ответить <br> на ваши вопросы
+        </h2>
+        <p class="contacts-section__description">
+          Для того, чтобы получить консультацию или ответ на свой вопрос — заполните форму и
+          мы свяжемся с вами
+        </p>
+      </div>
+
+      <div class="contacts-section__form">
+        <include src="../partials/request-form.html"
+          locals='{"form_prefix":"contact-request","form_class":" request-form--section"}'>
+        </include>
+      </div>
+    </div>
+  </div>
+</section>

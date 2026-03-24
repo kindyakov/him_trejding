@@ -80,6 +80,7 @@
   background: var(--extra-gray-1);
   border-radius: 4px;
   transition: background 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     background: var(--brand-id-blue);

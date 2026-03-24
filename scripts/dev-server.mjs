@@ -48,6 +48,25 @@ const fileExists = async (filePath) => {
   }
 };
 
+const resolvePageName = async (pathname) => {
+  if (pathname === '/' || pathname === '/index.html') {
+    return 'index.html';
+  }
+
+  const normalizedPath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
+  const candidates = normalizedPath.endsWith('.html')
+    ? [normalizedPath]
+    : [`${normalizedPath}.html`];
+
+  for (const candidate of candidates) {
+    if (await fileExists(resolve(pagesDir, candidate))) {
+      return candidate;
+    }
+  }
+
+  return null;
+};
+
 const renderHtml = async (pageName) => {
   const source = await readFile(resolve(pagesDir, pageName), 'utf8');
   const result = await processor.process(source);
@@ -189,23 +208,15 @@ const server = http.createServer(async (request, response) => {
       return;
     }
 
-    if (pathname === '/' || pathname === '/index.html') {
-      response.writeHead(200, {
-        'Cache-Control': 'no-store, no-cache, must-revalidate',
-        'Content-Type': mimeTypes['.html'],
-        Pragma: 'no-cache'
-      });
-      response.end(await renderHtml('index.html'));
-      return;
-    }
+    const pageName = await resolvePageName(pathname);
 
-    if (pathname === '/about' || pathname === '/about.html') {
+    if (pageName) {
       response.writeHead(200, {
         'Cache-Control': 'no-store, no-cache, must-revalidate',
         'Content-Type': mimeTypes['.html'],
         Pragma: 'no-cache'
       });
-      response.end(await renderHtml('about.html'));
+      response.end(await renderHtml(pageName));
       return;
     }
 

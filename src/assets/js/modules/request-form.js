@@ -71,15 +71,12 @@ export const initRequestForms = (dialog) => {
       ])
       .addField(getFieldSelector(formId, 'company'), [
         {
-          rule: 'required',
-          errorMessage: 'Введите название компании'
+          rule: 'minLength',
+          value: 10,
+          errorMessage: 'Минимум 10 символов'
         }
       ])
       .addField(getFieldSelector(formId, 'message'), [
-        {
-          rule: 'required',
-          errorMessage: 'Введите сообщение'
-        },
         {
           rule: 'minLength',
           value: 10,

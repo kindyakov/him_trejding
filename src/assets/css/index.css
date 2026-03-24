@@ -15,6 +15,7 @@
 @import './sections/contacts.css';
 @import './sections/footer.css';
 @import './sections/modal.css';
+@import './sections/request-form.css';
 
 .hidden {
   display: none;
