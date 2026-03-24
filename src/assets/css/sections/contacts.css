@@ -1,32 +1,44 @@
 .contacts-section__content {
-  display: grid;
-  grid-template-columns: 830px 900px;
-  gap: 94px;
+  display: flex;
+  gap: 32px;
+
+  @media (max-width: 920px) {
+    flex-direction: column;
+  }
 }
 
 .contacts-section__info {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  padding-top: 1px;
+  flex: 1 1 50%;
 }
 
 .contacts-section__title {
-  max-width: 830px;
+  margin-top: 16px;
+
+  @media (max-width: 1200px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 32px;
+  }
 }
 
 .contacts-section__description {
+  margin-top: 48px;
   max-width: 472px;
   font-size: 24px;
   font-weight: 500;
   line-height: 116%;
   color: var(--brand-id-black);
+
+  @media (max-width: 640px) {
+    font-size: 18px;
+    margin-top: 16px;
+  }
 }
 
 .contacts-section__form {
-  width: 100%;
-}
-
-.request-form--section {
-  min-height: 560px;
+  flex: 1 1 50%;
 }

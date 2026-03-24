@@ -1,19 +1,5 @@
 import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
-
-const createPaginationBullet = (container, index, slider) => {
-  const bullet = document.createElement('button');
-  bullet.className = 'documents__pagination-bullet';
-  bullet.type = 'button';
-  bullet.setAttribute('aria-label', `Перейти к документу ${index + 1}`);
-  bullet.addEventListener('click', () => {
-    const maxIndex = Math.max(slider.slides.length - slider.params.slidesPerView, 0);
-    slider.slideTo(Math.min(index, maxIndex));
-  });
-
-  container.append(bullet);
-  return bullet;
-};
+import { Navigation, Pagination } from 'swiper/modules';
 
 export const initDocumentsSlider = () => {
   const sliderElement = document.querySelector('.documents__slider');
@@ -23,33 +9,45 @@ export const initDocumentsSlider = () => {
     return null;
   }
 
-  const slider = new Swiper(sliderElement, {
-    modules: [Navigation],
-    slidesPerView: 'auto',
-    slidesPerGroup: 1,
-    spaceBetween: 23,
+  return new Swiper(sliderElement, {
+    modules: [Navigation, Pagination],
+    slidesPerView: 4,
+    spaceBetween: 24,
     speed: 600,
     navigation: {
       prevEl: '.documents__nav--prev',
       nextEl: '.documents__nav--next'
+    },
+    pagination: {
+      el: paginationElement,
+      clickable: true,
+      bulletClass: 'documents__pagination-bullet',
+      bulletActiveClass: 'is-active',
+      renderBullet(index, className) {
+        return `<button class="${className}" type="button" aria-label="Перейти к документу ${index + 1}"></button>`;
+      }
+    },
+    breakpoints: {
+      300: {
+        slidesPerView: 1.1,
+        spaceBetween: 16,
+      },
+      640: {
+        slidesPerView: 1.8,
+      },
+      920: {
+        slidesPerView: 3,
+      },
+      1200: {
+        slidesPerView: 3,
+      },
+      1600: {
+        slidesPerView: 3.5,
+        spaceBetween: 24,
+      },
+      1800: {
+        slidesPerView: 4,
+      }
     }
   });
-
-  const bullets = Array.from(slider.slides, (_, index) =>
-    createPaginationBullet(paginationElement, index, slider)
-  );
-
-  const syncPagination = () => {
-    const activeIndex = slider.activeIndex;
-
-    bullets.forEach((bullet, index) => {
-      bullet.classList.toggle('is-active', index === activeIndex);
-    });
-  };
-
-  slider.on('init', syncPagination);
-  slider.on('slideChange', syncPagination);
-  syncPagination();
-
-  return slider;
 };

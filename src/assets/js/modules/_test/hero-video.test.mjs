@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { restartVideoPlayback } from './hero-video.mjs';
+import { restartVideoPlayback } from '../hero-video.mjs';
 
 test('restartVideoPlayback resets time and starts playback again', async () => {
   let played = 0;

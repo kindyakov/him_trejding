@@ -28,7 +28,8 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+ul {
   margin: 0;
 }
 
@@ -142,7 +143,7 @@ button {
     border-color 0.28s ease;
 
   &:hover {
-    box-shadow: 0 16px 36px rgba(17, 29, 68, 0.18);
+    /* box-shadow: 0 16px 36px rgba(17, 29, 68, 0.18); */
 
     .button-primary__icon::before {
       transform: translateX(0);

@@ -286,11 +286,11 @@
   transition: opacity 0.2s ease;
 }
 
-.request-form__checkbox-input:checked + .request-form__checkbox-box {
+.request-form__checkbox-input:checked+.request-form__checkbox-box {
   background: var(--brand-id-blue);
 }
 
-.request-form__checkbox-input:checked + .request-form__checkbox-box::after {
+.request-form__checkbox-input:checked+.request-form__checkbox-box::after {
   opacity: 1;
 }
 
@@ -373,6 +373,7 @@
 
   .request-form__row {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .request-form__fields {

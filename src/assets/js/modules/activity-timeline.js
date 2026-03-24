@@ -1,16 +1,20 @@
-const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+import { getActivityTimelineState } from './activity-timeline-logic.mjs';
 
-const updateTimelineProgress = (section, timeline, lineFill) => {
-  const sectionRect = section.getBoundingClientRect();
+const applyTimelineState = (line, lineFill, cards) => {
   const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  const timelineRect = timeline.getBoundingClientRect();
+  const lineRect = line.getBoundingClientRect();
+  const cardRects = Array.from(cards, (card) => card.getBoundingClientRect());
+  const state = getActivityTimelineState({
+    viewportHeight,
+    lineRect,
+    cardRects
+  });
 
-  const start = viewportHeight * 0.78;
-  const end = sectionRect.height + timelineRect.height * 0.32;
-  const rawProgress = (start - sectionRect.top) / end;
-  const progress = clamp(rawProgress, 0, 1);
+  lineFill.style.height = `${state.fillHeight}px`;
 
-  lineFill.style.height = `${timelineRect.height * progress}px`;
+  cards.forEach((card, index) => {
+    card.classList.toggle('is-revealed', state.revealedCards[index]);
+  });
 };
 
 export const initActivityTimeline = () => {
@@ -21,31 +25,28 @@ export const initActivityTimeline = () => {
   }
 
   const timeline = section.querySelector('[data-activity-timeline]');
+  const line = section.querySelector('.activity__line');
   const lineFill = section.querySelector('[data-activity-line-fill]');
   const cards = section.querySelectorAll('[data-activity-card]');
 
-  if (!timeline || !lineFill || !cards.length) {
+  if (!timeline || !line || !lineFill || !cards.length) {
     return;
   }
 
-  const syncProgress = () => updateTimelineProgress(section, timeline, lineFill);
-  const onFrameUpdate = () => window.requestAnimationFrame(syncProgress);
+  let frameId = 0;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-        }
-      });
-    },
-    {
-      rootMargin: '0px 0px -12% 0px',
-      threshold: 0.2
+  const syncProgress = () => {
+    frameId = 0;
+    applyTimelineState(line, lineFill, cards);
+  };
+
+  const onFrameUpdate = () => {
+    if (frameId) {
+      return;
     }
-  );
 
-  cards.forEach((card) => observer.observe(card));
+    frameId = window.requestAnimationFrame(syncProgress);
+  };
 
   syncProgress();
 

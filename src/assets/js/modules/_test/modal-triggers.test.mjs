@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { bindDialogTriggers } from './modal-triggers.mjs';
+import { bindDialogTriggers } from '../modal-triggers.mjs';
 
 const createTrigger = () => {
   const listeners = new Map();

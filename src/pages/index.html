@@ -1,538 +1,512 @@
 <!doctype html>
 <html lang="ru">
-  <include
-    src="../partials/head.html"
-    locals='{"page_title":"Главная - Him Trading","page_description":""}'
-  >
-  </include>
+<include src="../partials/head.html" locals='{"page_title":"Главная - Him Trading","page_description":""}'>
+</include>
 
-  <body>
-    <include src="../partials/sprite.html"></include>
-    <include src="../partials/header.html"></include>
+<body>
+  <include src="../partials/sprite.html"></include>
+  <include src="../partials/header.html"></include>
 
-    <main class="page">
-      <section class="hero" id="hero" aria-labelledby="hero-title">
-        <div class="hero__media" aria-hidden="true">
-          <video
-            class="hero__video"
-            src="../assets/video/14523608_3840_2160_30fps.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-          ></video>
-        </div>
-        <div class="hero__container container">
-          <h1 class="hero__title" id="hero-title">Оптовые поставки нефтепродуктов и нефтехимии</h1>
-          <div class="hero__content">
-            <div class="hero__block">
-              <button
-                class="button-primary"
-                type="button"
-                data-request-modal-open
-                aria-controls="request-price-modal"
-              >
-                <span class="button-primary__icon" aria-hidden="true"> </span>
-                <span class="button-primary__text">Получить условия поставки</span>
-              </button>
-            </div>
+  <main class="page">
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero__media" aria-hidden="true">
+        <video class="hero__video" src="../assets/video/14523608_3840_2160_30fps.mp4" autoplay muted loop
+          playsinline></video>
+      </div>
+      <div class="hero__container container">
+        <h1 class="hero__title" id="hero-title">Оптовые поставки нефтепродуктов и нефтехимии</h1>
+        <div class="hero__content">
+          <div class="hero__block">
+            <button class="button-primary" type="button" data-request-modal-open aria-controls="request-price-modal">
+              <span class="button-primary__icon" aria-hidden="true"> </span>
+              <span class="button-primary__text">Получить условия поставки</span>
+            </button>
+          </div>
 
-            <div class="hero__block hero__block--right">
-              <p class="hero__description">
-                Физическая торговля, гарантированные объёмы и стабильные поставки для АГЗС,
-                нефтебаз, промышленности и предприятий ТЭК
-              </p>
-              <a class="hero__social" href="https://www.linkedin.com/" aria-label="LinkedIn">
-                <svg
-                  width="20"
-                  height="18"
-                  viewBox="0 0 20 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4 2.001C3.99974 2.53143 3.78877 3.04004 3.41351 3.41492C3.03825 3.78981 2.52943 4.00027 1.999 4C1.46857 3.99974 0.959965 3.78877 0.585079 3.41351C0.210194 3.03825 -0.000264966 2.52943 2.50361e-07 1.999C0.000265467 1.46857 0.211233 0.959965 0.586494 0.585079C0.961754 0.210194 1.47057 -0.000264966 2.001 2.50361e-07C2.53143 0.000265467 3.04004 0.211233 3.41492 0.586494C3.78981 0.961754 4.00027 1.47057 4 2.001ZM4.06 5.481H0.0600002V18.001H4.06V5.481ZM10.38 5.481H6.4V18.001H10.34V11.431C10.34 7.771 15.11 7.431 15.11 11.431V18.001H19.06V10.071C19.06 3.901 12 4.131 10.34 7.161L10.38 5.481Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </a>
-            </div>
+          <div class="hero__block hero__block--right">
+            <p class="hero__description">
+              Физическая торговля, гарантированные объёмы и стабильные поставки для АГЗС,
+              нефтебаз, промышленности и предприятий ТЭК
+            </p>
+            <a class="hero__social" href="https://www.linkedin.com/" aria-label="LinkedIn">
+              <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M4 2.001C3.99974 2.53143 3.78877 3.04004 3.41351 3.41492C3.03825 3.78981 2.52943 4.00027 1.999 4C1.46857 3.99974 0.959965 3.78877 0.585079 3.41351C0.210194 3.03825 -0.000264966 2.52943 2.50361e-07 1.999C0.000265467 1.46857 0.211233 0.959965 0.586494 0.585079C0.961754 0.210194 1.47057 -0.000264966 2.001 2.50361e-07C2.53143 0.000265467 3.04004 0.211233 3.41492 0.586494C3.78981 0.961754 4.00027 1.47057 4 2.001ZM4.06 5.481H0.0600002V18.001H4.06V5.481ZM10.38 5.481H6.4V18.001H10.34V11.431C10.34 7.771 15.11 7.431 15.11 11.431V18.001H19.06V10.071C19.06 3.901 12 4.131 10.34 7.161L10.38 5.481Z"
+                  fill="currentColor" />
+              </svg>
+            </a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="about section" id="about">
-        <div class="container about__container">
-          <div class="eyebrow">
-            <svg width="16" height="16" aria-hidden="true">
-              <use href="#icon-triangle"></use>
-            </svg>
-            <span class="eyebrow-text">О компании</span>
+    <section class="about section" id="about">
+      <div class="container about__container">
+        <div class="eyebrow">
+          <svg width="16" height="16" aria-hidden="true">
+            <use href="#icon-triangle"></use>
+          </svg>
+          <span class="eyebrow-text">О компании</span>
+        </div>
+        <h2 class="about__title title-h2">
+          Хим Трейдинг — компания, на которую можно положиться
+        </h2>
+        <div class="about__content">
+          <div class="about__block">
+            <p class="about__desc">
+              Мы специализируемся на оптовых поставках нефтепродуктов и нефтехимической продукции
+              для объектов с повышенными требованиями к надежности, объемам и срокам
+            </p>
           </div>
-          <h2 class="about__title title-h2">
-            Хим Трейдинг — компания, на которую можно положиться
-          </h2>
-          <div class="about__content">
-            <div class="about__block">
-              <p class="about__desc">
-                Мы специализируемся на оптовых поставках нефтепродуктов и нефтехимической продукции
-                для объектов с повышенными требованиями к надежности, объемам и срокам
-              </p>
-            </div>
-            <div class="about__block">
-              <div class="about__row">
-                <div class="about__wrapper--text">
-                  <p class="about__text">
-                    Работаем с владельцами сетей АГЗС, нефтебазами и ГНС, промышленными и
-                    нефтехимическими предприятиями, аэропортами и компаниями
-                    топливно-энергетического комплекса.
-                  </p>
-                  <p class="about__text">
-                    Осуществляем физическую торговлю. Прямые контракты и выстроенная логистика,
-                    позволяют обеспечивать бесперебойные поставки продукции.
-                  </p>
-                </div>
-
-                <a class="button-primary" href="/about.html">
-                  <span class="button-primary__icon" aria-hidden="true"></span>
-                  <span class="button-primary__text">Подробнее о компании</span>
-                </a>
+          <div class="about__block">
+            <div class="about__row">
+              <div class="about__wrapper--text">
+                <p class="about__text">
+                  Работаем с владельцами сетей АГЗС, нефтебазами и ГНС, промышленными и
+                  нефтехимическими предприятиями, аэропортами и компаниями
+                  топливно-энергетического комплекса.
+                </p>
+                <p class="about__text">
+                  Осуществляем физическую торговлю. Прямые контракты и выстроенная логистика,
+                  позволяют обеспечивать бесперебойные поставки продукции.
+                </p>
               </div>
 
-              <ul class="about__list">
-                <li class="about__item">
-                  <b>1,5</b>
-                  млн тонн продукции отгружено
+              <a class="button-primary" href="/about.html">
+                <span class="button-primary__icon" aria-hidden="true"></span>
+                <span class="button-primary__text">Подробнее о компании</span>
+              </a>
+            </div>
+
+            <ul class="about__list">
+              <li class="about__item">
+                <b>1,5</b>
+                млн тонн продукции отгружено
+              </li>
+              <li class="about__item">
+                <b>10+</b>
+                регионов присутствия
+              </li>
+              <li class="about__item">
+                <b>20</b>
+                объектов регулярных поставок
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="activity section" id="activity" aria-labelledby="activity-title" data-activity-section>
+      <div class="container activity__container">
+        <div class="eyebrow">
+          <svg width="16" height="16" aria-hidden="true">
+            <use href="#icon-triangle"></use>
+          </svg>
+          <span class="eyebrow-text">Деятельность компании</span>
+        </div>
+        <h2 class="activity__title title-h2" id="activity-title">
+          Физический трейдинг нефтепродуктов, СУГ и нефтехимии
+        </h2>
+
+        <div class="activity__timeline" data-activity-timeline>
+          <div class="activity__line" aria-hidden="true">
+            <span class="activity__line-fill" data-activity-line-fill></span>
+          </div>
+
+          <div class="activity-row">
+            <article class="activity-card" data-activity-card>
+              <div class="activity-card__content">
+                <h3 class="activity-card__title">Торговля нефтепродуктами</h3>
+
+                <p class="activity-card__text">
+                  Физическая торговля нефтепродуктами с поставками по долгосрочным контрактам и разовым сделкам,
+                  ориентированная на стабильные объёмы и соблюдение договорных условий
+                </p>
+              </div>
+
+              <span class="activity-card__index">[ 01 ]</span>
+            </article>
+
+            <div class="activity-ghost"></div>
+          </div>
+
+          <div class="activity-row">
+            <article class="activity-card" data-activity-card>
+              <div class="activity-card__content">
+                <h3 class="activity-card__title">Трейдинг СУГ</h3>
+
+                <p class="activity-card__text">
+                  Организация поставок сжиженных углеводородных газов для розничных сетей, промышленных и
+                  инфраструктурных объектов с учётом сезонности и региональных требований
+                </p>
+              </div>
+
+              <div class="activity-card__index">[ 02 ]</div>
+            </article>
+            <div class="activity-ghost"></div>
+          </div>
+
+          <div class="activity-row">
+            <article class="activity-card" data-activity-card>
+              <div class="activity-card__content">
+                <h3 class="activity-card__title">Трейдинг нефтехимии</h3>
+
+                <p class="activity-card__text">
+                  Торговля нефтехимической продукцией для промышленных и нефтехимических предприятий в рамках
+                  согласованных спецификаций и требований к качеству
+                </p>
+              </div>
+
+              <span class="activity-card__index">[ 03 ]</span>
+            </article>
+            <div class="activity-ghost"></div>
+          </div>
+
+          <div class="activity-row">
+            <article class="activity-card" data-activity-card>
+              <div class="activity-card__content">
+                <h3 class="activity-card__title">Международная логистика</h3>
+
+                <p class="activity-card__text">
+                  Построение и сопровождение международных логистических маршрутов с использованием автомобильного,
+                  железнодорожного и мультимодального транспорта
+                </p>
+              </div>
+
+              <span class="activity-card__index">[ 04 ]</span>
+            </article>
+            <div class="activity-ghost"></div>
+          </div>
+
+          <div class="activity-row">
+            <article class="activity-card" data-activity-card>
+              <div class="activity-card__content">
+                <h3 class="activity-card__title">Работа с производителями и конечными потребителями</h3>
+
+                <p class="activity-card__text">
+                  Прямое взаимодействие с производителями и конечными потребителями продукции, обеспечивающее
+                  прозрачность сделок, оптимальные условия поставок и устойчивые партнёрские связи
+                </p>
+              </div>
+              <span class="activity-card__index">[ 05 ]</span>
+            </article>
+            <div class="activity-ghost"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="geography section" id="geography" aria-labelledby="geography-title">
+      <div class="container geography__container">
+        <div class="eyebrow">
+          <svg width="16" height="16" aria-hidden="true">
+            <use href="#icon-triangle"></use>
+          </svg>
+          <span class="eyebrow-text">География деятельности</span>
+        </div>
+        <h2 class="geography__title title-h2" id="geography-title">
+          Осуществляем поставки на международных рынках
+        </h2>
+
+        <div class="geography__map-card">
+          <include src="../partials/map.html"></include>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="products section" id="products" aria-labelledby="products-title">
+      <div class="container products__container">
+        <div class="eyebrow">
+          <svg width="16" height="16" aria-hidden="true">
+            <use href="#icon-triangle"></use>
+          </svg>
+          <span class="eyebrow-text">Продукция компании</span>
+        </div>
+        <h2 class="products__title title-h2" id="products-title">
+          Продукция компании соответствует <br> всем отраслевым требованиям
+        </h2>
+
+        <div class="products__grid">
+          <article class="products-card">
+            <div class="products-card__media">
+              <img class="products-card__image" src="../assets/images/products-1.png" alt="" width="592" height="478" />
+            </div>
+            <div class="products-card__content">
+              <h3 class="products-card__title">СУГ (пропан, бутан, ПБТ)</h3>
+              <p class="products-card__description">ПБТ, ПБА, ПТ, БТ</p>
+            </div>
+            <button class="button-primary" type="button" data-request-modal-open aria-controls="request-price-modal">
+              <span class="button-primary__icon" aria-hidden="true"></span>
+              <span class="button-primary__text">Заказать поставку</span>
+            </button>
+          </article>
+
+          <article class="products-card">
+            <div class="products-card__media">
+              <img class="products-card__image" src="../assets/images/products-2.png" alt="" width="592" height="478" />
+            </div>
+            <div class="products-card__content">
+              <h3 class="products-card__title">Бензины</h3>
+              <p class="products-card__description">АИ-100, АИ-98, АИ-95, АИ-92, АИ-80</p>
+            </div>
+            <button class="button-primary" type="button" data-request-modal-open aria-controls="request-price-modal">
+              <span class="button-primary__icon" aria-hidden="true"></span>
+              <span class="button-primary__text">Заказать поставку</span>
+            </button>
+          </article>
+
+          <article class="products-card">
+            <div class="products-card__media">
+              <img class="products-card__image" src="../assets/images/products-3.png" alt="" width="592" height="478" />
+            </div>
+            <div class="products-card__content">
+              <h3 class="products-card__title">Дизельное топливо</h3>
+              <p class="products-card__description">EURO 5</p>
+            </div>
+            <button class="button-primary" type="button" data-request-modal-open aria-controls="request-price-modal">
+              <span class="button-primary__icon" aria-hidden="true"></span>
+              <span class="button-primary__text">Заказать поставку</span>
+            </button>
+          </article>
+
+          <article class="products-card">
+            <div class="products-card__media">
+              <img class="products-card__image" src="../assets/images/products-4.png" alt="" width="592" height="478" />
+            </div>
+            <div class="products-card__content">
+              <h3 class="products-card__title">Авиационный керосин</h3>
+              <p class="products-card__description">ТС-1, РТ, JET A-1, JET FUEL JP-54</p>
+            </div>
+            <button class="button-primary" type="button" data-request-modal-open aria-controls="request-price-modal">
+              <span class="button-primary__icon" aria-hidden="true"></span>
+              <span class="button-primary__text">Заказать поставку</span>
+            </button>
+          </article>
+
+          <article class="products-card">
+            <div class="products-card__media">
+              <img class="products-card__image" src="../assets/images/products-5.png" alt="" width="592" height="478" />
+            </div>
+            <div class="products-card__content">
+              <h3 class="products-card__title">Продукты первичной переработки нефти</h3>
+              <p class="products-card__description">
+                Поставка продукции первичной переработки нефти для промышленного применения
+              </p>
+            </div>
+            <button class="button-primary" type="button" data-request-modal-open aria-controls="request-price-modal">
+              <span class="button-primary__icon" aria-hidden="true"></span>
+              <span class="button-primary__text">Заказать поставку</span>
+            </button>
+          </article>
+
+          <article class="products-card">
+            <div class="products-card__media">
+              <img class="products-card__image" src="../assets/images/products-6.png" alt="" width="592" height="478" />
+            </div>
+            <div class="products-card__content">
+              <h3 class="products-card__title">Нефтехимия</h3>
+              <p class="products-card__description">
+                Поставка нефтехимической продукции, включая МТБЭ, ароматические углеводороды и
+                другие компоненты
+              </p>
+            </div>
+            <button class="button-primary" type="button" data-request-modal-open aria-controls="request-price-modal">
+              <span class="button-primary__icon" aria-hidden="true"></span>
+              <span class="button-primary__text">Заказать поставку</span>
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="stages section" id="stages" aria-labelledby="stages-title">
+      <div class="container stages__container">
+        <div class="eyebrow">
+          <svg width="16" height="16" aria-hidden="true">
+            <use href="#icon-triangle"></use>
+          </svg>
+          <span class="eyebrow-text">Этапы работы</span>
+        </div>
+        <h2 class="stages__title title-h2" id="stages-title">
+          Как проходит <br> сотрудничество с нами
+        </h2>
+
+        <div class="stages__frame">
+          <picture class="stages__picture">
+            <source media="(max-width: 480px)" srcset="../assets/images/stages-work-frame-mobile.png" />
+            <source media="(max-width: 640px)" srcset="../assets/images/stages-work-frame-tablet.png" />
+            <img class="stages__background" src="../assets/images/stages-work-frame.png" alt="Фоновая картинка"
+              width="1824" height="700" />
+          </picture>
+
+          <div class="stages__panel">
+            <div class="stages__group">
+              <h3 class="stages__group-title">Формирование</h3>
+              <ul class="stages__list">
+                <li class="stages__item">
+                  <span class="stages__index">01</span><span class="stages__text">Согласование ценового
+                    предложения</span>
                 </li>
-                <li class="about__item">
-                  <b>10+</b>
-                  регионов присутствия
+                <li class="stages__item">
+                  <span class="stages__index">02</span><span class="stages__text">Получение реквизитной заявки от
+                    покупателя</span>
                 </li>
-                <li class="about__item">
-                  <b>20</b>
-                  объектов регулярных поставок
+                <li class="stages__item">
+                  <span class="stages__index">03</span><span class="stages__text">Подписание контракта и
+                    спецификаций</span>
+                </li>
+                <li class="stages__item">
+                  <span class="stages__index">04</span><span class="stages__text">Оплата по выставленному инвойсу</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="stages__group">
+              <h3 class="stages__group-title">Реализация</h3>
+              <ul class="stages__list">
+                <li class="stages__item">
+                  <span class="stages__index">01</span><span class="stages__text">Отгрузка продукции</span>
+                </li>
+                <li class="stages__item">
+                  <span class="stages__index">02</span><span class="stages__text">Получение товара в пункте
+                    назначения</span>
+                </li>
+                <li class="stages__item">
+                  <span class="stages__index">03</span><span class="stages__text">Подписание закрывающих
+                    документов</span>
+                </li>
+                <li class="stages__item">
+                  <span class="stages__index">04</span><span class="stages__text">Сделка закрыта</span>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section
-        class="activity section"
-        id="activity"
-        aria-labelledby="activity-title"
-        data-activity-section
-      >
-        <div class="container activity__container">
-          <div class="eyebrow">
-            <svg width="16" height="16" aria-hidden="true">
-              <use href="#icon-triangle"></use>
-            </svg>
-            <span class="eyebrow-text">Деятельность компании</span>
-          </div>
-          <h2 class="activity__title title-h2" id="activity-title">
-            Физический трейдинг нефтепродуктов, СУГ и нефтехимии
-          </h2>
-
-          <div class="activity__timeline" data-activity-timeline>
-            <div class="activity__line" aria-hidden="true">
-              <span class="activity__line-fill" data-activity-line-fill></span>
+    <section class="documents section" id="documents" aria-labelledby="documents-title">
+      <div class="container documents__container">
+        <div class="documents__header">
+          <div class="documents__headline">
+            <div class="eyebrow">
+              <svg width="16" height="16" aria-hidden="true">
+                <use href="#icon-triangle"></use>
+              </svg>
+              <span class="eyebrow-text">Документы</span>
             </div>
+            <h2 class="documents__title title-h2" id="documents-title">
+              Паспорта качества продукции
+            </h2>
+          </div>
 
-            <article class="activity-card activity-card--right" data-activity-card>
-              <span class="activity-card__index">[ 01 ]</span>
-              <div class="activity-card__content">
-                <h3 class="activity-card__title">Торговля нефтепродуктами</h3>
-                <p class="activity-card__text">
-                  Поставка бензина, дизельного топлива, мазута, битума, топлива для реактивных
-                  двигателей и других нефтепродуктов под задачи объектов с высоким потреблением и
-                  требованиями к бесперебойной логистике.
-                </p>
-              </div>
-            </article>
-
-            <article class="activity-card activity-card--left" data-activity-card>
-              <span class="activity-card__index">[ 02 ]</span>
-              <div class="activity-card__content">
-                <h3 class="activity-card__title">Торговля сжиженными углеводородными газами</h3>
-                <p class="activity-card__text">
-                  СУГ для сетей АГЗС, нефтебаз и газонаполнительных станций с подтвержденными
-                  объемами, прозрачной маршрутизацией и соблюдением графика поставки.
-                </p>
-              </div>
-            </article>
-
-            <article class="activity-card activity-card--right" data-activity-card>
-              <span class="activity-card__index">[ 03 ]</span>
-              <div class="activity-card__content">
-                <h3 class="activity-card__title">Торговля нефтехимией</h3>
-                <p class="activity-card__text">
-                  Отгрузка нефтехимической продукции для производственных предприятий и
-                  переработчиков, где критичны стабильность сырьевого потока и точное соблюдение
-                  контрактных параметров.
-                </p>
-              </div>
-            </article>
-
-            <article class="activity-card activity-card--left" data-activity-card>
-              <span class="activity-card__index">[ 04 ]</span>
-              <div class="activity-card__content">
-                <h3 class="activity-card__title">Организация логистики и отгрузки</h3>
-                <p class="activity-card__text">
-                  Координация поставок железнодорожным и автомобильным транспортом, контроль
-                  документооборота и сопровождение сделок на каждом этапе исполнения.
-                </p>
-              </div>
-            </article>
-
-            <article class="activity-card activity-card--right" data-activity-card>
-              <span class="activity-card__index">[ 05 ]</span>
-              <div class="activity-card__content">
-                <h3 class="activity-card__title">
-                  Работа с производителями и конечными потребителями
-                </h3>
-                <p class="activity-card__text">
-                  Формирование устойчивых цепочек между производителем, трейдером и конечным
-                  заказчиком для долгосрочных объемов, предсказуемых условий и регулярных поставок.
-                </p>
-              </div>
-            </article>
+          <div class="documents__controls">
+            <button class="documents__nav documents__nav--prev" type="button" aria-label="Предыдущий документ">
+              <span class="documents__nav-icon" aria-hidden="true"></span>
+            </button>
+            <button class="documents__nav documents__nav--next" type="button" aria-label="Следующий документ">
+              <span class="documents__nav-icon" aria-hidden="true"></span>
+            </button>
           </div>
         </div>
-      </section>
 
-      <section class="geography section" id="geography" aria-labelledby="geography-title">
-        <div class="container geography__container">
-          <div class="eyebrow">
-            <svg width="16" height="16" aria-hidden="true">
-              <use href="#icon-triangle"></use>
-            </svg>
-            <span class="eyebrow-text">География деятельности</span>
-          </div>
-          <h2 class="geography__title title-h2" id="geography-title">
-            Осуществляем поставки на международных рынках
-          </h2>
-
-          <div class="geography__map-card">
-            <img
-              class="geography__map-image"
-              src="../assets/images/map.svg"
-              alt="Карта международных поставок"
-              width="1306"
-              height="668"
-            />
-            <div class="geography__marker" aria-hidden="true">
-              <span class="geography__marker-pin"></span>
-              <span class="geography__marker-label">Казахстан</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="products section" id="products" aria-labelledby="products-title">
-        <div class="container products__container">
-          <div class="eyebrow">
-            <svg width="16" height="16" aria-hidden="true">
-              <use href="#icon-triangle"></use>
-            </svg>
-            <span class="eyebrow-text">Продукция компании</span>
-          </div>
-          <h2 class="products__title title-h2" id="products-title">
-            Продукция компании соответствует всем отраслевым требованиям
-          </h2>
-
-          <div class="products__grid">
-            <article class="products-card">
-              <div class="products-card__media">
-                <img class="products-card__image" src="" alt="" width="592" height="478" />
-              </div>
-              <div class="products-card__content">
-                <h3 class="products-card__title">СУГ (пропан, бутан, ПБТ)</h3>
-                <p class="products-card__description">ПБТ, ПБА, ПТ, БТ</p>
-              </div>
-              <button
-                class="button-primary"
-                type="button"
-                data-request-modal-open
-                aria-controls="request-price-modal"
-              >
-                <span class="button-primary__icon" aria-hidden="true"></span>
-                <span class="button-primary__text">Заказать поставку</span>
-              </button>
-            </article>
-
-            <article class="products-card">
-              <div class="products-card__media">
-                <img class="products-card__image" src="" alt="" width="592" height="478" />
-              </div>
-              <div class="products-card__content">
-                <h3 class="products-card__title">Бензины</h3>
-                <p class="products-card__description">АИ-100, АИ-98, АИ-95, АИ-92, АИ-80</p>
-              </div>
-              <button
-                class="button-primary"
-                type="button"
-                data-request-modal-open
-                aria-controls="request-price-modal"
-              >
-                <span class="button-primary__icon" aria-hidden="true"></span>
-                <span class="button-primary__text">Заказать поставку</span>
-              </button>
-            </article>
-
-            <article class="products-card">
-              <div class="products-card__media">
-                <img class="products-card__image" src="" alt="" width="592" height="478" />
-              </div>
-              <div class="products-card__content">
-                <h3 class="products-card__title">Дизельное топливо</h3>
-                <p class="products-card__description">EURO 5</p>
-              </div>
-              <button
-                class="button-primary"
-                type="button"
-                data-request-modal-open
-                aria-controls="request-price-modal"
-              >
-                <span class="button-primary__icon" aria-hidden="true"></span>
-                <span class="button-primary__text">Заказать поставку</span>
-              </button>
-            </article>
-
-            <article class="products-card">
-              <div class="products-card__media">
-                <img class="products-card__image" src="" alt="" width="592" height="478" />
-              </div>
-              <div class="products-card__content">
-                <h3 class="products-card__title">Авиационный керосин</h3>
-                <p class="products-card__description">ТС-1, РТ, JET A-1, JET FUEL JP-54</p>
-              </div>
-              <button
-                class="button-primary"
-                type="button"
-                data-request-modal-open
-                aria-controls="request-price-modal"
-              >
-                <span class="button-primary__icon" aria-hidden="true"></span>
-                <span class="button-primary__text">Заказать поставку</span>
-              </button>
-            </article>
-
-            <article class="products-card">
-              <div class="products-card__media">
-                <img class="products-card__image" src="" alt="" width="592" height="478" />
-              </div>
-              <div class="products-card__content">
-                <h3 class="products-card__title">Продукты первичной переработки нефти</h3>
-                <p class="products-card__description">
-                  Поставка продукции первичной переработки нефти для промышленного применения
-                </p>
-              </div>
-              <button
-                class="button-primary"
-                type="button"
-                data-request-modal-open
-                aria-controls="request-price-modal"
-              >
-                <span class="button-primary__icon" aria-hidden="true"></span>
-                <span class="button-primary__text">Заказать поставку</span>
-              </button>
-            </article>
-
-            <article class="products-card">
-              <div class="products-card__media">
-                <img class="products-card__image" src="" alt="" width="592" height="478" />
-              </div>
-              <div class="products-card__content">
-                <h3 class="products-card__title">Нефтехимия</h3>
-                <p class="products-card__description">
-                  Поставка нефтехимической продукции, включая МТБЭ, ароматические углеводороды и
-                  другие компоненты
-                </p>
-              </div>
-              <button
-                class="button-primary"
-                type="button"
-                data-request-modal-open
-                aria-controls="request-price-modal"
-              >
-                <span class="button-primary__icon" aria-hidden="true"></span>
-                <span class="button-primary__text">Заказать поставку</span>
-              </button>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="stages section" id="stages" aria-labelledby="stages-title">
-        <div class="container stages__container">
-          <div class="eyebrow">
-            <svg width="16" height="16" aria-hidden="true">
-              <use href="#icon-triangle"></use>
-            </svg>
-            <span class="eyebrow-text">Этапы работы</span>
-          </div>
-          <h2 class="stages__title title-h2" id="stages-title">
-            Как проходит сотрудничество с нами
-          </h2>
-
-          <div class="stages__frame">
-            <img
-              class="stages__background"
-              src="../assets/images/stages-work-frame.png"
-              alt=""
-              width="1824"
-              height="700"
-            />
-
-            <div class="stages__panel">
-              <div class="stages__group">
-                <h3 class="stages__group-title">Формирование</h3>
-                <ul class="stages__list">
-                  <li class="stages__item">
-                    <span class="stages__index">01</span
-                    ><span class="stages__text">Согласование ценового предложения</span>
-                  </li>
-                  <li class="stages__item">
-                    <span class="stages__index">02</span
-                    ><span class="stages__text">Получение реквизитной заявки от покупателя</span>
-                  </li>
-                  <li class="stages__item">
-                    <span class="stages__index">03</span
-                    ><span class="stages__text">Подписание контракта и спецификаций</span>
-                  </li>
-                  <li class="stages__item">
-                    <span class="stages__index">04</span
-                    ><span class="stages__text">Оплата по выставленному инвойсу</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="stages__group">
-                <h3 class="stages__group-title">Реализация</h3>
-                <ul class="stages__list">
-                  <li class="stages__item">
-                    <span class="stages__index">01</span
-                    ><span class="stages__text">Отгрузка продукции</span>
-                  </li>
-                  <li class="stages__item">
-                    <span class="stages__index">02</span
-                    ><span class="stages__text">Получение товара в пункте назначения</span>
-                  </li>
-                  <li class="stages__item">
-                    <span class="stages__index">03</span
-                    ><span class="stages__text">Подписание закрывающих документов</span>
-                  </li>
-                  <li class="stages__item">
-                    <span class="stages__index">04</span
-                    ><span class="stages__text">Сделка закрыта</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="documents section" id="documents" aria-labelledby="documents-title">
-        <div class="container documents__container">
-          <div class="documents__header">
-            <div class="documents__headline">
-              <div class="eyebrow">
-                <svg width="16" height="16" aria-hidden="true">
-                  <use href="#icon-triangle"></use>
+        <div class="documents__slider swiper">
+          <div class="swiper-wrapper">
+            <a class="documents-card swiper-slide">
+              <h3 class="documents-card__title">Сертификат соответствия АИ-92</h3>
+              <div class="documents-card__bottom">
+                <span href="/" class="documents-card__link">Открыть PDF</span>
+                <svg width="21" height="21" aria-hidden="true">
+                  <use href="#icon-arrow-right-md"></use>
                 </svg>
-                <span class="eyebrow-text">Документы</span>
               </div>
-              <h2 class="documents__title title-h2" id="documents-title">
-                Паспорта качества продукции
-              </h2>
-            </div>
-
-            <div class="documents__controls">
-              <button
-                class="documents__nav documents__nav--prev"
-                type="button"
-                aria-label="Предыдущий документ"
-              >
-                <span class="documents__nav-icon" aria-hidden="true"></span>
-              </button>
-              <button
-                class="documents__nav documents__nav--next"
-                type="button"
-                aria-label="Следующий документ"
-              >
-                <span class="documents__nav-icon" aria-hidden="true"></span>
-              </button>
-            </div>
-          </div>
-
-          <div class="documents__slider swiper">
-            <div class="swiper-wrapper">
-              <article class="documents-card swiper-slide">
-                <h3 class="documents-card__title">Сертификат соответствия АИ-92</h3>
-                <a href="/" class="documents-card__link">Открыть PDF</a>
-              </article>
-              <article class="documents-card swiper-slide">
-                <h3 class="documents-card__title">Паспорт продукции АИ-98</h3>
-                <a href="/" class="documents-card__link">Открыть PDF</a>
-              </article>
-              <article class="documents-card swiper-slide">
-                <h3 class="documents-card__title">Паспорт продукции ДТ-5</h3>
-                <a href="/" class="documents-card__link">Открыть PDF</a>
-              </article>
-              <article class="documents-card swiper-slide">
-                <h3 class="documents-card__title">Сертификат соответствия ДТ-5</h3>
-                <a href="/" class="documents-card__link">Открыть PDF</a>
-              </article>
-              <article class="documents-card swiper-slide">
-                <h3 class="documents-card__title">Паспорт продукции АИ-95</h3>
-                <a href="/" class="documents-card__link">Открыть PDF</a>
-              </article>
-              <article class="documents-card swiper-slide">
-                <h3 class="documents-card__title">Сертификат соответствия СУГ</h3>
-                <a href="/" class="documents-card__link">Открыть PDF</a>
-              </article>
-            </div>
-          </div>
-
-          <div class="documents__pagination" aria-label="Навигация по документам"></div>
-        </div>
-      </section>
-
-      <section class="contacts-section section" id="contacts" aria-labelledby="contacts-title">
-        <div class="container contacts-section__container">
-          <div class="contacts-section__content">
-            <div class="contacts-section__info">
-              <div class="eyebrow">
-                <svg width="16" height="16" aria-hidden="true">
-                  <use href="#icon-triangle"></use>
+            </a>
+            <a class="documents-card swiper-slide">
+              <h3 class="documents-card__title">Паспорт продукции АИ-98</h3>
+              <div class="documents-card__bottom">
+                <span href="/" class="documents-card__link">Открыть PDF</span>
+                <svg width="21" height="21" aria-hidden="true">
+                  <use href="#icon-arrow-right-md"></use>
                 </svg>
-                <span class="eyebrow-text">Свяжитесь с нами</span>
               </div>
-              <h2 class="contacts-section__title title-h2" id="contacts-title">
-                Мы готовы обсудить сотрудничество и ответить на ваши вопросы
-              </h2>
-              <p class="contacts-section__description">
-                Для того, чтобы получить консультацию или ответ на свой вопрос — заполните форму и
-                мы свяжемся с вами
-              </p>
-            </div>
-
-            <div class="contacts-section__form">
-              <include
-                src="../partials/request-form.html"
-                locals='{"form_prefix":"contact-request","form_class":" request-form--section"}'
-              >
-              </include>
-            </div>
+            </a>
+            <a class="documents-card swiper-slide">
+              <h3 class="documents-card__title">Паспорт продукции ДТ-5</h3>
+              <div class="documents-card__bottom">
+                <span href="/" class="documents-card__link">Открыть PDF</span>
+                <svg width="21" height="21" aria-hidden="true">
+                  <use href="#icon-arrow-right-md"></use>
+                </svg>
+              </div>
+            </a>
+            <a class="documents-card swiper-slide">
+              <h3 class="documents-card__title">Сертификат соответствия ДТ-5</h3>
+              <div class="documents-card__bottom">
+                <span href="/" class="documents-card__link">Открыть PDF</span>
+                <svg width="21" height="21" aria-hidden="true">
+                  <use href="#icon-arrow-right-md"></use>
+                </svg>
+              </div>
+            </a>
+            <a class="documents-card swiper-slide">
+              <h3 class="documents-card__title">Паспорт продукции АИ-95</h3>
+              <div class="documents-card__bottom">
+                <span href="/" class="documents-card__link">Открыть PDF</span>
+                <svg width="21" height="21" aria-hidden="true">
+                  <use href="#icon-arrow-right-md"></use>
+                </svg>
+              </div>
+            </a>
+            <a class="documents-card swiper-slide">
+              <h3 class="documents-card__title">Сертификат соответствия СУГ</h3>
+              <div class="documents-card__bottom">
+                <span href="/" class="documents-card__link">Открыть PDF</span>
+                <svg width="21" height="21" aria-hidden="true">
+                  <use href="#icon-arrow-right-md"></use>
+                </svg>
+              </div>
+            </a>
           </div>
         </div>
-      </section>
-    </main>
 
-    <include src="../partials/footer.html"></include>
-    <include src="../partials/modal.html"></include>
-  </body>
+        <div class="documents__pagination" aria-label="Навигация по документам"></div>
+      </div>
+    </section>
+
+    <section class="contacts-section section" id="contacts" aria-labelledby="contacts-title">
+      <div class="container contacts-section__container">
+        <div class="contacts-section__content">
+          <div class="contacts-section__info">
+            <div class="eyebrow">
+              <svg width="16" height="16" aria-hidden="true">
+                <use href="#icon-triangle"></use>
+              </svg>
+              <span class="eyebrow-text">Свяжитесь с нами</span>
+            </div>
+            <h2 class="contacts-section__title title-h2" id="contacts-title">
+              Мы готовы обсудить <br> сотрудничество и ответить <br> на ваши вопросы
+            </h2>
+            <p class="contacts-section__description">
+              Для того, чтобы получить консультацию или ответ на свой вопрос — заполните форму и
+              мы свяжемся с вами
+            </p>
+          </div>
+
+          <div class="contacts-section__form">
+            <include src="../partials/request-form.html"
+              locals='{"form_prefix":"contact-request","form_class":" request-form--section"}'>
+            </include>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- <include src="../partials/footer.html"></include> -->
+  <include src="../partials/modal.html"></include>
+</body>
+
 </html>
