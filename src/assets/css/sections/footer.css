@@ -3,9 +3,25 @@
   padding-bottom: 36px;
   background: var(--brand-id-blue);
   color: var(--brand-id-white);
+  margin-top: 150px;
+
+  @media (max-width: 768px) {
+    margin-top: 80px;
+  }
 }
 
-/* .footer__container {} */
+.footer__container {
+  display: flex;
+  gap: 54px;
+}
+
+.footer__left {
+  flex: 1 1 50%;
+}
+
+.footer__right {
+  flex: 1 1 50%;
+}
 
 .footer__logo {
   color: var(--brand-id-white);

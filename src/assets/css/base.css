@@ -70,6 +70,7 @@ button {
 }
 
 .link-hover {
+  display: inline-block;
   position: relative;
   overflow: hidden;
 
