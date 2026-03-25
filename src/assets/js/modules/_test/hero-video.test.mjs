@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { restartVideoPlayback } from '../hero-video.mjs';
+import { initHeroVideo, restartVideoPlayback } from '../hero-video.mjs';
 
 test('restartVideoPlayback resets time and starts playback again', async () => {
   let played = 0;
@@ -30,4 +30,33 @@ test('restartVideoPlayback tolerates rejected play promise', async () => {
 
   await assert.doesNotReject(() => restartVideoPlayback(video));
   assert.equal(video.currentTime, 0);
+});
+
+test('initHeroVideo does not force manual restart for looping video', () => {
+  const listeners = new Map();
+  const video = {
+    loop: true,
+    play() {
+      return Promise.resolve();
+    },
+    addEventListener(eventName, handler) {
+      listeners.set(eventName, handler);
+    }
+  };
+
+  const previousDocument = global.document;
+  global.document = {
+    querySelector(selector) {
+      return selector === '.hero__video' ? video : null;
+    }
+  };
+
+  try {
+    initHeroVideo();
+  } finally {
+    global.document = previousDocument;
+  }
+
+  assert.equal(listeners.has('loadeddata'), true);
+  assert.equal(listeners.has('ended'), false);
 });

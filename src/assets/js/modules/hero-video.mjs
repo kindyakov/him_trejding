@@ -25,9 +25,12 @@ export const initHeroVideo = () => {
   };
 
   video.addEventListener('loadeddata', ensurePlayback);
-  video.addEventListener('ended', () => {
-    void restartVideoPlayback(video);
-  });
+
+  if (!video.loop) {
+    video.addEventListener('ended', () => {
+      void restartVideoPlayback(video);
+    });
+  }
 
   ensurePlayback();
 };

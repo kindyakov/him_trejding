@@ -37,7 +37,18 @@ const mimeTypes = {
   '.ico': 'image/x-icon',
   '.js': 'application/javascript; charset=utf-8',
   '.mp4': 'video/mp4',
+  '.png': 'image/png',
   '.svg': 'image/svg+xml; charset=utf-8'
+};
+
+const getCacheControl = (filePath) => {
+  const extension = extname(filePath);
+
+  if (extension === '.html' || extension === '.css' || extension === '.js') {
+    return 'no-store, no-cache, must-revalidate';
+  }
+
+  return 'public, max-age=3600';
 };
 
 const fileExists = async (filePath) => {
@@ -82,6 +93,7 @@ const renderHtml = async (pageName) => {
 
 const serveFile = async (request, response, filePath) => {
   const type = mimeTypes[extname(filePath)] || 'application/octet-stream';
+  const cacheControl = getCacheControl(filePath);
   const fileStats = statSync(filePath);
   const rangeHeader = request.headers.range;
 
@@ -102,7 +114,7 @@ const serveFile = async (request, response, filePath) => {
       ) {
         response.writeHead(206, {
           'Accept-Ranges': 'bytes',
-          'Cache-Control': 'no-store, no-cache, must-revalidate',
+          'Cache-Control': cacheControl,
           'Content-Length': end - start + 1,
           'Content-Range': `bytes ${start}-${end}/${fileStats.size}`,
           'Content-Type': type,
@@ -123,7 +135,7 @@ const serveFile = async (request, response, filePath) => {
 
   response.writeHead(200, {
     'Accept-Ranges': 'bytes',
-    'Cache-Control': 'no-store, no-cache, must-revalidate',
+    'Cache-Control': cacheControl,
     'Content-Type': type,
     'Content-Length': fileStats.size,
     Pragma: 'no-cache'

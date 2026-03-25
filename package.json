@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/dev.mjs",
+    "start": "node scripts/start.mjs",
     "prebuild": "node scripts/clean-dist.mjs",
     "build:html": "node scripts/build-html.mjs",
     "build:css": "parcel build src/assets/css/index.css --dist-dir dist/css --public-url /css --no-source-maps",
