@@ -17,7 +17,7 @@
   gap: 12px;
   padding-bottom: 1px;
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     display: none;
   }
 }
@@ -168,4 +168,26 @@
 
 .documents__pagination-bullet.is-active {
   width: 38px;
+}
+
+.documents__bottom {
+  position: relative;
+}
+
+.documents__watch-all {
+  color: var(--brand-id-blue);
+  font-weight: 600;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 768px) {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
