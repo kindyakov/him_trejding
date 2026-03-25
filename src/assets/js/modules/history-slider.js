@@ -35,13 +35,12 @@ export const initHistorySlider = ({ root = document } = {}) => {
 
   const triggers = Array.from(section.querySelectorAll('[data-history-trigger]'));
   const currentYearDesktop = section.querySelector('[data-history-current-year-desktop]');
-  const currentYearMobile = section.querySelector('[data-history-current-year-mobile]');
   const currentText = section.querySelector('[data-history-current-text]');
   const prevButton = section.querySelector('[data-history-prev]');
   const nextButton = section.querySelector('[data-history-next]');
   const pagination = section.querySelector('[data-history-pagination]');
 
-  if (!triggers.length || !currentYearDesktop || !currentYearMobile || !currentText || !prevButton || !nextButton || !pagination) {
+  if (!triggers.length || !currentYearDesktop || !currentText || !prevButton || !nextButton || !pagination) {
     return null;
   }
 
@@ -88,12 +87,11 @@ export const initHistorySlider = ({ root = document } = {}) => {
   const render = ({ animate }) => {
     const slide = slides[activeIndex];
     currentYearDesktop.textContent = slide.year;
-    currentYearMobile.textContent = slide.year;
     currentText.textContent = slide.text;
     syncButtons();
 
     if (animate) {
-      animateElements([currentYearDesktop, currentYearMobile, currentText]);
+      animateElements([currentYearDesktop, currentText]);
     }
   };
 

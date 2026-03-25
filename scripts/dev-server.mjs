@@ -5,6 +5,7 @@ import { extname, resolve } from 'node:path';
 
 import posthtml from 'posthtml';
 import include from 'posthtml-include';
+import { normalizeRequestPathname } from './dev-server-paths.mjs';
 
 const projectRoot = process.cwd();
 const pagesDir = resolve(projectRoot, 'src/pages');
@@ -18,8 +19,8 @@ let reloadTimeoutId = null;
 const excludedSourceDirs = new Set(['css', 'js']);
 const assetSourceDirs = existsSync(srcAssetsDir)
   ? readdirSync(srcAssetsDir, { withFileTypes: true })
-      .filter((entry) => entry.isDirectory() && !excludedSourceDirs.has(entry.name))
-      .map((entry) => resolve(srcAssetsDir, entry.name))
+    .filter((entry) => entry.isDirectory() && !excludedSourceDirs.has(entry.name))
+    .map((entry) => resolve(srcAssetsDir, entry.name))
   : [];
 
 const processor = posthtml([
@@ -191,7 +192,7 @@ const watchers = [
 const server = http.createServer(async (request, response) => {
   try {
     const url = new URL(request.url || '/', `http://localhost:${port}`);
-    const pathname = url.pathname;
+    const pathname = normalizeRequestPathname(url.pathname);
 
     if (pathname === '/__dev_reload') {
       response.writeHead(200, {

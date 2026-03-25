@@ -81,6 +81,7 @@
   border-color: var(--brand-id-blue);
 }
 
+.request-form__field.is-filled .request-form__label,
 .request-form__input:focus+.request-form__label {
   top: 0;
   transform: translateY(-50%);
@@ -155,7 +156,7 @@
 
 .request-form__checkbox {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
   cursor: pointer;
 }
@@ -167,7 +168,6 @@
 }
 
 .request-form__checkbox-box {
-  margin-top: 4px;
   position: relative;
   flex: 0 0 24px;
   width: 24px;
@@ -182,18 +182,9 @@
 .request-form__checkbox-box::after {
   content: '';
   position: absolute;
-  top: 3px;
-  left: 7px;
-  width: 5px;
-  height: 10px;
-  border-right: 2px solid var(--brand-id-white);
-  border-bottom: 2px solid var(--brand-id-white);
+  inset: 2px;
   opacity: 0;
-  transform: rotate(45deg);
   transition: opacity 0.2s ease;
-}
-
-.request-form__checkbox-input:checked+.request-form__checkbox-box {
   background: var(--brand-id-blue);
 }
 

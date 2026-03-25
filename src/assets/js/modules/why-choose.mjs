@@ -1,12 +1,28 @@
 const defaultImportSceneModule = () => import('./why-choose-scene.js');
+const PRELOAD_ROOT_MARGIN = '0px 0px 2000px 0px';
 
-const startWhyChooseScene = async ({ importSceneModule }) => {
-  try {
-    const module = await importSceneModule();
-    module.initWhyChooseScene?.();
-  } catch (error) {
-    console.error('Failed to initialize why choose scene:', error);
-  }
+const createSceneLoader = (importSceneModule) => {
+  let sceneModulePromise = null;
+  let started = false;
+
+  return async () => {
+    if (started) {
+      return;
+    }
+
+    started = true;
+
+    try {
+      if (!sceneModulePromise) {
+        sceneModulePromise = importSceneModule();
+      }
+
+      const module = await sceneModulePromise;
+      module.initWhyChooseScene?.();
+    } catch (error) {
+      console.error('Failed to initialize why choose scene:', error);
+    }
+  };
 };
 
 export const initWhyChoose = ({
@@ -20,8 +36,10 @@ export const initWhyChoose = ({
     return null;
   }
 
+  const loadScene = createSceneLoader(importSceneModule);
+
   if (!observerFactory) {
-    return startWhyChooseScene({ importSceneModule });
+    return loadScene();
   }
 
   const observer = new observerFactory((entries, instance) => {
@@ -30,7 +48,9 @@ export const initWhyChoose = ({
     }
 
     instance.disconnect();
-    void startWhyChooseScene({ importSceneModule });
+    void loadScene();
+  }, {
+    rootMargin: PRELOAD_ROOT_MARGIN
   });
 
   observer.observe(section);

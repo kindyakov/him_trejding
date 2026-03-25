@@ -70,6 +70,28 @@
   }
 }
 
+.documents__grid {
+  display: grid;
+  margin-top: 80px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 920px) {
+    margin-top: 64px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 32px;
+    grid-template-columns: 1fr;
+  }
+}
+
 .documents-card {
   display: flex;
   flex-direction: column;
@@ -93,7 +115,9 @@
 
   @media (max-width: 640px) {
     min-height: 200px;
+    padding: 16px;
   }
+
 }
 
 .documents-card__title {

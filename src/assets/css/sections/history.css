@@ -1,17 +1,12 @@
 .history__title {
   max-width: 988px;
   margin-top: 16px;
-
-  @media (max-width: 640px) {
-    margin-top: 12px;
-  }
 }
 
 .history__layout {
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) minmax(0, 912px);
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
-  align-items: end;
   margin-top: 48px;
 
   @media (max-width: 920px) {
@@ -21,17 +16,23 @@
   }
 }
 
-.history__hero-year,
-.history__panel-year {
-  font-size: clamp(80px, 11.5vw, 212px);
-  font-weight: 600;
+.history__hero-year {
+  font-weight: 500;
+  font-size: 212px;
   line-height: 80%;
   letter-spacing: -0.04em;
-  color: var(--brand-id-black);
-}
 
-.history__panel-year {
-  display: none;
+  @media (max-width: 1200px) {
+    font-size: 160px;
+  }
+
+  @media (max-width: 920px) {
+    font-size: 120px;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 80px;
+  }
 }
 
 .history__panel {
@@ -44,12 +45,13 @@
   display: inline-flex;
   align-items: center;
   gap: 18px;
-  padding-right: 12px;
   background: linear-gradient(var(--extra-gray-3), var(--extra-gray-3)) left 50% / 100% 1px no-repeat;
 
   @media (max-width: 920px) {
     display: flex;
     overflow-x: auto;
+    max-width: 100%;
+    width: fit-content;
     scrollbar-width: none;
     gap: 12px;
     padding-right: 0;
@@ -83,7 +85,7 @@
     }
   }
 
-  @media (max-width: 920px) {
+  @media (max-width: 1200px) {
     padding-inline: 8px;
     font-size: 28px;
     line-height: 114%;
@@ -100,6 +102,10 @@
   align-items: flex-start;
   border-left: 0;
   margin-top: 120px;
+
+  @media (max-width: 1200px) {
+    margin-top: 80px;
+  }
 
   @media (max-width: 920px) {
     margin-top: 56px;
@@ -153,6 +159,10 @@
 .history__content {
   min-width: 0;
   margin-top: 24px;
+
+  @media (max-width: 920px) {
+    margin-top: 0;
+  }
 }
 
 .history__text {
@@ -197,7 +207,6 @@
 
 .history__pagination-button.is-active {
   width: 38px;
-  background: var(--brand-id-black);
 }
 
 .history__pagination-button:not(.is-active) {
@@ -205,22 +214,5 @@
     &:hover {
       transform: scale(1.1);
     }
-  }
-}
-
-@media (max-width: 920px) {
-  .history__hero-year {
-    display: none;
-  }
-
-  .history__panel-year {
-    display: block;
-    margin-bottom: 62px;
-  }
-}
-
-@media (max-width: 640px) {
-  .history__panel-year {
-    margin-bottom: 56px;
   }
 }

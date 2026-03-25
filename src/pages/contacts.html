@@ -10,7 +10,14 @@
   <main class="page">
     <section class="contacts-page" aria-labelledby="contacts-page-title">
       <div class="container contacts-page__container">
-        <h1 class="contacts-page__title" id="contacts-page-title">Контакты</h1>
+        <nav class="legal-breadcrumbs" aria-label="Хлебные крошки">
+          <a class="legal-breadcrumbs__item" href="/">Главная</a>
+          <span class="legal-breadcrumbs__item legal-breadcrumbs__item--span" aria-current="page">
+            Контакты
+          </span>
+        </nav>
+
+        <h1 class="contacts-page__title title-h1 title-page" id="contacts-page-title">Контакты</h1>
 
         <div class="contacts-page__body">
           <div class="contacts-page__summary">
@@ -65,11 +72,13 @@
         <section class="contacts-map" aria-labelledby="contacts-map-title">
           <h2 class="contacts-map__title visually-hidden" id="contacts-map-title">Карта офисов</h2>
           <div class="contacts-map__frame">
-            <div class="contacts-map__canvas" data-contacts-map aria-label="Карта расположения офисов Хим Трейдинг"></div>
+            <div class="contacts-map__canvas" data-contacts-map aria-label="Карта расположения офисов Хим Трейдинг">
+            </div>
           </div>
         </section>
       </div>
     </section>
+    <include src="../partials/sections/contacts.html"></include>
   </main>
 
   <include src="../partials/footer.html"></include>

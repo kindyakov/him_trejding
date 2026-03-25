@@ -3,8 +3,9 @@ const CONTACTS_MAP_MARKERS = [
     id: 'moscow-office',
     title: 'Представительство в России',
     description: 'Ленинградский проспект, 36, стр. 39, Москва',
-    coordinates: [37.5567, 55.7945],
-    href: 'https://www.google.com/maps/search/?api=1&query=%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B3%D1%80%D0%B0%D0%B4%D1%81%D0%BA%D0%B8%D0%B9+%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%2C+36+%D1%81%D1%82%D1%80.+39%2C+%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0'
+    lat: 55.790236,
+    lng: 37.567231,
+    href: 'https://yandex.ru/maps/?text=%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B3%D1%80%D0%B0%D0%B4%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%2C%2036%20%D1%81%D1%82%D1%80.%2039%2C%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0'
   }
 ];
 
@@ -20,6 +21,8 @@ const renderFallback = (container, message) => {
     </div>
   `;
 };
+
+const toYandexCoordinates = (marker) => [marker.lng, marker.lat];
 
 const loadYandexMapsApi = (apiKey) =>
   new Promise((resolve, reject) => {
@@ -62,14 +65,12 @@ const createMarkerContent = (marker) => {
 
   const tooltip = document.createElement('span');
   tooltip.className = 'contacts-map__tooltip';
-  tooltip.innerHTML = `<strong>${marker.title}</strong><span>${marker.coordinates[1]}, ${marker.coordinates[0]}</span>`;
+  tooltip.innerHTML = `<strong>${marker.title}</strong><span>${marker.lat}, ${marker.lng}</span>`;
 
   wrapper.innerHTML = `
     <span class="contacts-map__pin" aria-hidden="true">
-      <svg viewBox="0 0 40 40" role="presentation">
-        <path
-          d="M20 4.99805C12.6402 4.99805 6.66797 10.9703 6.66797 18.3301C6.66797 28.3293 20 36.6643 20 36.6643C20 36.6643 33.332 28.3293 33.332 18.3301C33.332 10.9703 27.3598 4.99805 20 4.99805ZM20 23.3301C17.2385 23.3301 15 21.0915 15 18.3301C15 15.5686 17.2385 13.3301 20 13.3301C22.7614 13.3301 25 15.5686 25 18.3301C25 21.0915 22.7614 23.3301 20 23.3301Z"
-          fill="currentColor" />
+      <svg width="27" height="32" aria-hidden="true">
+        <use href="#icon-marker"></use>
       </svg>
     </span>
   `;
@@ -98,7 +99,7 @@ const initYandexMap = async (container) => {
     YMapDefaultFeaturesLayer,
     YMapMarker
   } = ymaps3;
-  const center = CONTACTS_MAP_MARKERS[0]?.coordinates || [37.5567, 55.7945];
+  const center = CONTACTS_MAP_MARKERS[0] ? toYandexCoordinates(CONTACTS_MAP_MARKERS[0]) : [37.5567, 55.7945];
 
   const map = new YMap(container, {
     location: {
@@ -114,7 +115,7 @@ const initYandexMap = async (container) => {
     map.addChild(
       new YMapMarker(
         {
-          coordinates: marker.coordinates
+          coordinates: toYandexCoordinates(marker)
         },
         createMarkerContent(marker)
       )

@@ -1,6 +1,11 @@
+import IMask from 'imask';
 import JustValidate from 'just-validate';
 import { submitRequestPrice } from '../api/mock-request';
 import { showErrorToast, showSuccessToast } from './toast';
+
+const PHONE_MASK_OPTIONS = {
+  mask: '+{7} (000) 000-00-00'
+};
 
 const bindFileInput = (fileInput, fileName) => {
   fileInput.addEventListener('change', () => {
@@ -10,6 +15,45 @@ const bindFileInput = (fileInput, fileName) => {
 };
 
 const getFieldSelector = (formId, name) => `#${formId} [name="${name}"]`;
+const syncFloatingLabelState = (input) => {
+  const field = input.closest('.request-form__field');
+
+  if (!field) {
+    return;
+  }
+
+  field.classList.toggle('is-filled', input.value.trim().length > 0);
+};
+
+const syncFloatingLabels = (form) => {
+  const inputs = Array.from(form.querySelectorAll('.request-form__field .request-form__input'));
+  inputs.forEach(syncFloatingLabelState);
+};
+
+const bindFloatingLabels = (form) => {
+  const inputs = Array.from(form.querySelectorAll('.request-form__field .request-form__input'));
+
+  inputs.forEach((input) => {
+    const sync = () => syncFloatingLabelState(input);
+
+    input.addEventListener('input', sync);
+    input.addEventListener('change', sync);
+    sync();
+
+    // Browser autofill can populate fields after handlers are attached.
+    window.setTimeout(sync, 150);
+  });
+};
+
+const initPhoneMask = (form) => {
+  const phoneInput = form.querySelector('[name="phone"]');
+
+  if (!phoneInput) {
+    return null;
+  }
+
+  return IMask(phoneInput, PHONE_MASK_OPTIONS);
+};
 
 export const initRequestForms = (dialog) => {
   const forms = Array.from(document.querySelectorAll('[data-request-form]'));
@@ -28,8 +72,10 @@ export const initRequestForms = (dialog) => {
     }
 
     bindFileInput(fileInput, fileName);
+    bindFloatingLabels(form);
 
     const formId = form.id;
+    const phoneMask = initPhoneMask(form);
     const validator = new JustValidate(form, {
       errorFieldCssClass: 'just-validate-error-field',
       errorLabelCssClass: 'just-validate-error-label',
@@ -55,7 +101,7 @@ export const initRequestForms = (dialog) => {
           errorMessage: 'Введите телефон'
         },
         {
-          validator: (value) => /^[+\d\s()-]{10,}$/.test(value.trim()),
+          validator: () => phoneMask?.unmaskedValue.length === 11,
           errorMessage: 'Некорректный номер телефона'
         }
       ])
@@ -99,6 +145,10 @@ export const initRequestForms = (dialog) => {
         try {
           await submitRequestPrice(formData);
           form.reset();
+          if (phoneMask) {
+            phoneMask.value = '';
+          }
+          syncFloatingLabels(form);
           fileName.textContent = 'Файл не выбран';
           showSuccessToast('Заявка отправлена. Мы свяжемся с вами в ближайшее время.');
 
