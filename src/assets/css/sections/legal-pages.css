@@ -7,20 +7,30 @@
 }
 
 .legal-breadcrumbs {
+  margin-top: 120px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+
+  @media (max-width: 640px) {
+    margin-top: 86px;
+  }
 }
 
 .legal-breadcrumbs__item {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  padding: 8px;
+  border: 1px solid var(--extra-gray-4);
   border-radius: 4px;
-  font-size: 12px;
+  padding: 8px;
   font-weight: 500;
-  line-height: 1.1667;
+  font-size: 12px;
+  line-height: 117%;
+  color: var(--extra-gray-4);
+  transition: 0.2s ease;
+
+  &:hover:not(span) {
+    color: var(--brand-id-blue);
+    border-color: var(--brand-id-blue);
+  }
 }
 
 .legal-breadcrumbs__item--home {
@@ -29,30 +39,53 @@
   color: var(--extra-gray-4);
 }
 
-.legal-breadcrumbs__item--current {
-  min-width: 272px;
+.legal-breadcrumbs__item--span {
   background: var(--extra-gray-1);
   color: var(--brand-id-black);
-}
-
-@media (max-width: 480px) {
-  .legal-breadcrumbs__item--current {
-    min-width: 0;
-  }
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 117%;
+  border: none;
 }
 
 .legal-document {
   margin-top: 74px;
+
+  @media (max-width: 640px) {
+    margin-top: 48px;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 36px;
+  }
+}
+
+.legal-document__content {
+  margin-top: 80px;
   max-width: 900px;
+
+  @media (max-width: 640px) {
+    margin-top: 64px;
+  }
 }
 
 .legal-document h1 {
-  font-size: clamp(2rem, 3.1vw, 3.75rem);
   font-weight: 600;
-  line-height: 1.0667;
+  font-size: 60px;
+  line-height: 107%;
+
+  @media (max-width: 768px) {
+    font-size: 44px;
+    line-height: 95%;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 32px;
+    line-height: 106%;
+  }
 }
 
-.legal-document > p {
+.legal-document>p {
   margin-top: 32px;
   font-size: 18px;
   line-height: 1.3333;
@@ -74,10 +107,10 @@
   line-height: 1.25;
 }
 
-.legal-document h2 + p,
-.legal-document h2 + ul,
-.legal-document p + ul,
-.legal-document p + p {
+.legal-document h2+p,
+.legal-document h2+ul,
+.legal-document p+ul,
+.legal-document p+p {
   margin-top: 12px;
 }
 
@@ -86,7 +119,7 @@
   padding-left: 24px;
 }
 
-.legal-document li + li {
+.legal-document li+li {
   margin-top: 4px;
 }
 
@@ -96,7 +129,7 @@
     max-width: 100%;
   }
 
-  .legal-document > p {
+  .legal-document>p {
     margin-top: 24px;
     font-size: 17px;
   }
@@ -111,7 +144,7 @@
     gap: 6px;
   }
 
-  .legal-document > p {
+  .legal-document>p {
     font-size: 16px;
     line-height: 1.25;
   }

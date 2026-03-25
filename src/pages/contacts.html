@@ -8,12 +8,68 @@
   <include src="../partials/header.html"></include>
 
   <main class="page">
-    <section>
-      <div class="container">
-        <h1>Контакты</h1>
+    <section class="contacts-page" aria-labelledby="contacts-page-title">
+      <div class="container contacts-page__container">
+        <h1 class="contacts-page__title" id="contacts-page-title">Контакты</h1>
+
+        <div class="contacts-page__body">
+          <div class="contacts-page__summary">
+            <p class="contacts-page__lead">
+              На этой странице вы найдёте адреса наших офисов и актуальные способы связи. По телефону или e-mail
+              можно запросить коммерческое предложение, уточнить наличие и цены, согласовать условия поставки и график
+              отгрузок.
+            </p>
+          </div>
+
+          <div class="contacts-page__details">
+            <article class="contacts-card contacts-card--contacts" aria-labelledby="contacts-card-title">
+              <h2 class="contacts-card__heading" id="contacts-card-title">Наши контакты</h2>
+
+              <div class="contacts-card__list">
+                <div class="contacts-card__item">
+                  <span class="contacts-card__label">Телефон</span>
+                  <a class="contacts-card__value" href="tel:+79150953279">+7 915 095-32-79</a>
+                </div>
+
+                <div class="contacts-card__item">
+                  <span class="contacts-card__label">Почта</span>
+                  <a class="contacts-card__value contacts-card__value--accent" href="mailto:office@chimtrading.com">
+                    office@chimtrading.com
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="contacts-card contacts-card--addresses" aria-labelledby="contacts-addresses-title">
+              <h2 class="contacts-card__heading" id="contacts-addresses-title">Наши адреса</h2>
+
+              <div class="contacts-card__list">
+                <div class="contacts-card__item">
+                  <span class="contacts-card__label">Юридический адрес</span>
+                  <address class="contacts-card__value contacts-card__value--address">
+                    Кыргызская Республика, 720010, г. Бишкек, Ленинский район, бульвар Молодой Гвардии, 20, кв. 1
+                  </address>
+                </div>
+
+                <div class="contacts-card__item">
+                  <span class="contacts-card__label">Представительство в России</span>
+                  <address class="contacts-card__value contacts-card__value--address">
+                    г. Москва, Ленинградский проспект, 36, стр. 39
+                  </address>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <section class="contacts-map" aria-labelledby="contacts-map-title">
+          <h2 class="contacts-map__title visually-hidden" id="contacts-map-title">Карта офисов</h2>
+          <div class="contacts-map__frame">
+            <div class="contacts-map__canvas" data-contacts-map aria-label="Карта расположения офисов Хим Трейдинг"></div>
+          </div>
+        </section>
       </div>
     </section>
-    <include src="../partials/sections/contacts.html"></include>
   </main>
 
   <include src="../partials/footer.html"></include>

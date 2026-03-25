@@ -6,6 +6,8 @@
 @import './sections/header.css';
 @import './sections/hero.css';
 @import './sections/about.css';
+@import './sections/history.css';
+@import './sections/transport.css';
 @import './sections/activity.css';
 @import './sections/geography.css';
 @import './sections/products.css';

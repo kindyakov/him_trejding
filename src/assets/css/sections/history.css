@@ -1,0 +1,226 @@
+.history__title {
+  max-width: 988px;
+  margin-top: 16px;
+
+  @media (max-width: 640px) {
+    margin-top: 12px;
+  }
+}
+
+.history__layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(0, 912px);
+  gap: 20px;
+  align-items: end;
+  margin-top: 48px;
+
+  @media (max-width: 920px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 32px;
+  }
+}
+
+.history__hero-year,
+.history__panel-year {
+  font-size: clamp(80px, 11.5vw, 212px);
+  font-weight: 600;
+  line-height: 80%;
+  letter-spacing: -0.04em;
+  color: var(--brand-id-black);
+}
+
+.history__panel-year {
+  display: none;
+}
+
+.history__panel {
+  min-width: 0;
+  padding-left: 0;
+  border-left: none;
+}
+
+.history__timeline {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding-right: 12px;
+  background: linear-gradient(var(--extra-gray-3), var(--extra-gray-3)) left 50% / 100% 1px no-repeat;
+
+  @media (max-width: 920px) {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 12px;
+    padding-right: 0;
+  }
+}
+
+.history__timeline::-webkit-scrollbar {
+  display: none;
+}
+
+.history__year {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  border: 0;
+  padding: 0 18px;
+  background: var(--brand-id-white);
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 106%;
+  color: var(--extra-gray-3);
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--brand-id-black);
+    }
+  }
+
+  @media (max-width: 920px) {
+    padding-inline: 8px;
+    font-size: 28px;
+    line-height: 114%;
+  }
+}
+
+.history__year.is-active {
+  color: var(--brand-id-black);
+}
+
+.history__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-left: 0;
+  margin-top: 120px;
+
+  @media (max-width: 920px) {
+    margin-top: 56px;
+  }
+}
+
+.history__actions {
+  display: flex;
+  gap: 12px;
+
+  @media (max-width: 920px) {
+    display: none;
+  }
+}
+
+.history__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--extra-gray-3);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 24px;
+  line-height: 1;
+  color: var(--extra-gray-3);
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.history__arrow:not(:disabled) {
+  border-color: var(--brand-id-blue);
+  color: var(--brand-id-blue);
+
+  @media (hover: hover) {
+    &:hover {
+      background: rgba(39, 74, 165, 0.08);
+    }
+  }
+}
+
+.history__arrow:disabled {
+  cursor: default;
+}
+
+.history__content {
+  min-width: 0;
+  margin-top: 24px;
+}
+
+.history__text {
+  max-width: 710px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 117%;
+  color: var(--brand-id-black);
+
+  @media (max-width: 920px) {
+    max-width: 592px;
+    font-size: 18px;
+    line-height: 111%;
+  }
+}
+
+.history__pagination {
+  display: none;
+
+  @media (max-width: 920px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+  }
+}
+
+.history__pagination-button {
+  width: 8px;
+  height: 8px;
+  border: 0;
+  padding: 0;
+  border-radius: 999px;
+  background: var(--extra-gray-3);
+  cursor: pointer;
+  transition:
+    width 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.history__pagination-button.is-active {
+  width: 38px;
+  background: var(--brand-id-black);
+}
+
+.history__pagination-button:not(.is-active) {
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+@media (max-width: 920px) {
+  .history__hero-year {
+    display: none;
+  }
+
+  .history__panel-year {
+    display: block;
+    margin-bottom: 62px;
+  }
+}
+
+@media (max-width: 640px) {
+  .history__panel-year {
+    margin-bottom: 56px;
+  }
+}

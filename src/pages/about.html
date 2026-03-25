@@ -8,7 +8,91 @@
   <include src="../partials/header.html"></include>
 
   <main class="page">
+    <section class="hero hero-about" id="hero" aria-labelledby="hero-title">
+      <div class="hero__media" aria-hidden="true">
+        <video class="hero__video" src="../assets/video/15199444_3840_2160_30fps.mp4" autoplay muted loop
+          playsinline></video>
+      </div>
+      <div class="hero__container container">
+        <nav class="legal-breadcrumbs" aria-label="Хлебные крошки">
+          <a class="legal-breadcrumbs__item" href="/">Главная</a>
+          <span class="legal-breadcrumbs__item legal-breadcrumbs__item--span" aria-current="page">
+            О компании
+          </span>
+        </nav>
 
+        <h1 class="hero__title" id="hero-title">О компании</h1>
+      </div>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="container about__container">
+        <div class="eyebrow">
+          <svg width="16" height="16" aria-hidden="true">
+            <use href="#icon-triangle"></use>
+          </svg>
+          <span class="eyebrow-text">О компании</span>
+        </div>
+        <h2 class="about__title title-h2">
+          Хим Трейдинг — компания, на которую можно положиться
+        </h2>
+        <div class="about__content">
+          <div class="about__block">
+            <p class="about__desc">
+              Мы специализируемся на оптовых поставках нефтепродуктов и нефтехимической продукции
+              для объектов с повышенными требованиями к надежности, объемам и срокам
+            </p>
+          </div>
+          <div class="about__block">
+            <div class="about__row">
+              <div class="about__wrapper--text">
+                <p class="about__text">
+                  Работаем с владельцами сетей АГЗС, нефтебазами и ГНС, промышленными и
+                  нефтехимическими предприятиями, аэропортами и компаниями
+                  топливно-энергетического комплекса.
+                </p>
+                <p class="about__text">
+                  Осуществляем физическую торговлю. Прямые контракты и выстроенная логистика,
+                  позволяют обеспечивать бесперебойные поставки продукции.
+                </p>
+              </div>
+
+              <div class="about__wrapper--text">
+                <p class="about__text">
+                  Работаем с производителями и конечными потребителями. География деятельности охватывает международные
+                  направления,
+                  включая страны СНГ и Центральной Азии.
+                </p>
+                <p class="about__text">
+                  <strong>
+                    Осуществляем физическую торговлю. Прямые контракты и выстроенная логистика,
+                    позволяют обеспечивать бесперебойные поставки продукции.
+                  </strong>
+                </p>
+              </div>
+            </div>
+
+            <ul class="about__list">
+              <li class="about__item">
+                <b>1,5</b>
+                млн тонн продукции отгружено
+              </li>
+              <li class="about__item">
+                <b>10+</b>
+                регионов присутствия
+              </li>
+              <li class="about__item">
+                <b>20</b>
+                объектов регулярных поставок
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <include src="../partials/sections/history.html"></include>
+    <include src="../partials/sections/transport.html"></include>
   </main>
 
   <include src="../partials/footer.html"></include>

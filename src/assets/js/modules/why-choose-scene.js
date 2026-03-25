@@ -1,10 +1,42 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { getWhyChooseModelPinState } from './why-choose-positioning.mjs';
 
 const modelUrl = '/assets/models/Logo-Tech-Trade-for-site.glb';
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 const lerp = (start, end, alpha) => start + (end - start) * alpha;
+
+const clearModelPinningStyles = (modelLayer) => {
+  modelLayer.dataset.pinState = 'start';
+  modelLayer.style.removeProperty('top');
+  modelLayer.style.removeProperty('right');
+  modelLayer.style.removeProperty('bottom');
+  modelLayer.style.removeProperty('left');
+  modelLayer.style.removeProperty('width');
+};
+
+const measureNaturalModelRect = (modelLayer) => {
+  const previousState = modelLayer.dataset.pinState;
+  const previousTop = modelLayer.style.top;
+  const previousRight = modelLayer.style.right;
+  const previousBottom = modelLayer.style.bottom;
+  const previousLeft = modelLayer.style.left;
+  const previousWidth = modelLayer.style.width;
+
+  clearModelPinningStyles(modelLayer);
+
+  const rect = modelLayer.getBoundingClientRect();
+
+  modelLayer.dataset.pinState = previousState;
+  modelLayer.style.top = previousTop;
+  modelLayer.style.right = previousRight;
+  modelLayer.style.bottom = previousBottom;
+  modelLayer.style.left = previousLeft;
+  modelLayer.style.width = previousWidth;
+
+  return rect;
+};
 
 export const initWhyChooseScene = () => {
   const section = document.querySelector('[data-why-choose-scene]');
@@ -52,6 +84,7 @@ export const initWhyChooseScene = () => {
   let currentRotationX = 0.08;
   let targetRotationY = -0.3;
   let targetRotationX = 0.08;
+  let pinRafId = 0;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const resizeScene = () => {
@@ -76,20 +109,65 @@ export const initWhyChooseScene = () => {
     targetRotationX = 0.12 - progress * 0.18;
   };
 
-  const updateModelPlacement = () => {
+  const applyModelPinning = () => {
     const sectionRect = section.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     const modelHeight = modelLayer.offsetHeight;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
     if (!modelHeight) {
       return;
     }
 
-    const desiredTop = viewportHeight / 2 - modelHeight / 2 - sectionRect.top;
-    const maxTop = Math.max(section.offsetHeight - modelHeight, 0);
-    const clampedTop = clamp(desiredTop, 0, maxTop);
+    const { state, fixedTop } = getWhyChooseModelPinState({
+      viewportHeight,
+      modelHeight,
+      sectionRect: {
+        top: sectionRect.top,
+        bottom: sectionRect.bottom,
+        height: sectionRect.height
+      }
+    });
 
-    section.style.setProperty('--why-choose-model-offset', `${clampedTop}px`);
+    if (state === 'fixed') {
+      const modelRect = measureNaturalModelRect(modelLayer);
+
+      modelLayer.dataset.pinState = 'fixed';
+      modelLayer.style.top = `${Math.round(fixedTop)}px`;
+      modelLayer.style.right = 'auto';
+      modelLayer.style.bottom = 'auto';
+      modelLayer.style.left = `${Math.round(modelRect.left)}px`;
+      modelLayer.style.width = `${Math.round(modelRect.width)}px`;
+      return;
+    }
+
+    clearModelPinningStyles(modelLayer);
+    modelLayer.dataset.pinState = state;
+
+    if (state === 'end') {
+      modelLayer.style.top = 'auto';
+      modelLayer.style.bottom = '0';
+    } else {
+      modelLayer.style.top = '0';
+    }
+  };
+
+  const flushPinning = () => {
+    pinRafId = 0;
+
+    if (disposed) {
+      return;
+    }
+
+    updateTargetsFromScroll();
+    applyModelPinning();
+  };
+
+  const schedulePinningUpdate = () => {
+    if (pinRafId) {
+      return;
+    }
+
+    pinRafId = window.requestAnimationFrame(flushPinning);
   };
 
   const render = () => {
@@ -133,7 +211,7 @@ export const initWhyChooseScene = () => {
       camera.lookAt(0, 1, 0);
 
       updateTargetsFromScroll();
-      updateModelPlacement();
+      applyModelPinning();
       resizeScene();
     },
     undefined,
@@ -144,18 +222,15 @@ export const initWhyChooseScene = () => {
 
   const onResize = () => {
     resizeScene();
-    updateTargetsFromScroll();
-    updateModelPlacement();
+    schedulePinningUpdate();
   };
 
   const onScroll = () => {
-    updateTargetsFromScroll();
-    updateModelPlacement();
+    schedulePinningUpdate();
   };
 
   resizeScene();
-  updateTargetsFromScroll();
-  updateModelPlacement();
+  flushPinning();
   render();
 
   window.addEventListener('resize', onResize);
@@ -165,8 +240,10 @@ export const initWhyChooseScene = () => {
     destroy() {
       disposed = true;
       window.cancelAnimationFrame(frameId);
+      window.cancelAnimationFrame(pinRafId);
       window.removeEventListener('resize', onResize);
       window.removeEventListener('scroll', onScroll);
+      clearModelPinningStyles(modelLayer);
       renderer.dispose();
     }
   };

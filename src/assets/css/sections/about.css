@@ -1,3 +1,16 @@
+.hero-about .hero__container {
+  padding-bottom: 56px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-about .legal-breadcrumbs__item:not(span) {
+  color: var(--brand-id-white);
+  border-color: var(--brand-id-white);
+}
+
 .about__title {
   max-width: 911px;
   margin-top: 16px;

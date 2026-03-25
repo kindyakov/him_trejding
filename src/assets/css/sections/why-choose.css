@@ -77,7 +77,6 @@
 .why-choose__composition {
   position: relative;
   margin-top: 68px;
-  --why-choose-model-offset: 0px;
 
   @media (max-width: 1200px) {
     margin-top: 48px;
@@ -156,7 +155,7 @@
   z-index: 1;
   width: min(900px, 52vw);
   aspect-ratio: 1012 / 726;
-  transform: translate3d(-50%, var(--why-choose-model-offset), 0);
+  transform: translateX(-50%);
   pointer-events: none;
 
   @media (max-width: 1200px) {
@@ -171,6 +170,16 @@
   @media (max-width: 480px) {
     width: min(418px, 105vw);
   }
+}
+
+.why-choose__model[data-pin-state='fixed'] {
+  position: fixed;
+  transform: none;
+}
+
+.why-choose__model[data-pin-state='end'] {
+  top: auto;
+  bottom: 0;
 }
 
 .why-choose__model-canvas {
