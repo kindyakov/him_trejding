@@ -5,11 +5,18 @@
   right: 0;
   top: 24px;
   z-index: 10;
+  transition:
+    top 0.28s ease,
+    padding 0.28s ease;
 
   @media (max-width: 768px) {
     top: 16px;
     z-index: 110;
   }
+}
+
+.header--scrolled {
+  top: 8px;
 }
 
 /* .header__container {} */
@@ -23,11 +30,21 @@
   background: var(--extra-gray-1);
   border-radius: 4px;
   padding: 16px;
+  transition:
+    border-radius 0.28s ease,
+    min-height 0.28s ease,
+    padding 0.28s ease,
+    box-shadow 0.28s ease;
 
   @media (max-width: 768px) {
     padding: 8px 12px;
     min-height: 46px;
   }
+}
+
+.header--scrolled .header__body {
+  border-radius: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .header__logo {

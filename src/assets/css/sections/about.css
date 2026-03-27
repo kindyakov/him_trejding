@@ -115,6 +115,7 @@
   font-size: 80px;
   font-weight: 600;
   line-height: 100%;
+  font-variant-numeric: tabular-nums;
 
   @media (max-width: 640px) {
     font-size: 60px;

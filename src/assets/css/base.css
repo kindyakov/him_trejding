@@ -155,6 +155,56 @@ button {
   }
 }
 
+.js-reveal-lines {
+  display: block;
+  position: relative;
+}
+
+.reveal-lines__measure {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  visibility: hidden;
+  pointer-events: none;
+  white-space: normal;
+}
+
+.reveal-lines__segment,
+.reveal-lines__line {
+  display: block;
+}
+
+.reveal-lines__token {
+  display: inline;
+  white-space: pre-wrap;
+}
+
+.reveal-lines__line {
+  overflow: hidden;
+}
+
+.reveal-lines__line-inner {
+  display: block;
+  transform: translateY(115%);
+  transition:
+    transform 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 1.05s ease-out;
+  transition-delay: var(--reveal-line-delay, 0ms);
+  will-change: transform;
+}
+
+.js-reveal-lines.is-reveal-lines-visible .reveal-lines__line-inner {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-lines__line-inner {
+    transform: none;
+    transition: none;
+  }
+}
+
 .button-primary {
   display: inline-flex;
   align-items: center;

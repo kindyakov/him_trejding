@@ -1,5 +1,6 @@
 @import './variable.css';
 @import './base.css';
+@import '../../../node_modules/aos/dist/aos.css';
 @import '../../../node_modules/notyf/notyf.min.css';
 @import '../../../node_modules/swiper/swiper-bundle.min.css';
 
