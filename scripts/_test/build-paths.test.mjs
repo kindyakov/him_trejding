@@ -19,6 +19,7 @@ test('normalizeBasePath normalizes GitHub Pages repository paths', () => {
 
 test('applyBasePathToHtml keeps root-relative build output for the default host', () => {
   const source = `
+    <head></head>
     <link rel="stylesheet" href="../assets/css/index.css">
     <script type="module" src="../assets/js/index.js"></script>
     <img src="../assets/images/logo.svg" alt="">
@@ -33,6 +34,7 @@ test('applyBasePathToHtml keeps root-relative build output for the default host'
     jsFileName: 'index.js'
   });
 
+  assert.match(html, /<meta name="app-base-path" content="\/">/);
   assert.doesNotMatch(html, /\.\.\/assets\//);
   assert.match(html, /href="\/css\/index\.css"/);
   assert.match(html, /src="\/js\/index\.js"/);
@@ -43,6 +45,7 @@ test('applyBasePathToHtml keeps root-relative build output for the default host'
 
 test('applyBasePathToHtml rewrites assets and page links for GitHub Pages hosting', () => {
   const source = `
+    <head></head>
     <link rel="stylesheet" href="../assets/css/index.css">
     <script type="module" src="../assets/js/index.js"></script>
     <img src="../assets/images/logo.svg" alt="">
@@ -58,6 +61,7 @@ test('applyBasePathToHtml rewrites assets and page links for GitHub Pages hostin
     jsFileName: 'index.hash.js'
   });
 
+  assert.match(html, /<meta name="app-base-path" content="\/him-trejding\/">/);
   assert.doesNotMatch(html, /\.\.\/assets\//);
   assert.match(html, /href="\/him-trejding\/css\/index\.hash\.css"/);
   assert.match(html, /src="\/him-trejding\/js\/index\.hash\.js"/);

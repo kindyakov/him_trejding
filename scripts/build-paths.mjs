@@ -69,8 +69,14 @@ export const applyBasePathToHtml = (
   { basePath = process.env.BASE_PATH || '/', cssFileName, jsFileName }
 ) => {
   const normalizedBasePath = normalizeBasePath(basePath);
+  const htmlWithBasePathMeta = source.includes('name="app-base-path"')
+    ? source
+    : source.replace(
+        '</head>',
+        `  <meta name="app-base-path" content="${normalizedBasePath}">\n</head>`
+      );
 
-  return source
+  return htmlWithBasePathMeta
     .replaceAll('../assets/css/index.css', getPublicUrl(`css/${cssFileName}`, normalizedBasePath))
     .replaceAll('../assets/js/index.js', getPublicUrl(`js/${jsFileName}`, normalizedBasePath))
     .replaceAll('../assets/', getPublicUrl('assets', normalizedBasePath) + '/')

@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { getWhyChooseModelPinState } from './why-choose-positioning.mjs';
-import { getWhyChooseModelUrl } from './why-choose-scene-assets.mjs';
+import { getAssetPath } from './asset-paths.mjs';
 
-const modelUrl = getWhyChooseModelUrl();
+const modelUrl = getAssetPath('/assets/models/Logo-Tech-Trade-for-site.glb');
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 const lerp = (start, end, alpha) => start + (end - start) * alpha;
