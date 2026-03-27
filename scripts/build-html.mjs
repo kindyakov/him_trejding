@@ -3,11 +3,13 @@ import { resolve } from 'node:path';
 
 import posthtml from 'posthtml';
 import include from 'posthtml-include';
+import { applyBasePathToHtml, normalizeBasePath } from './build-paths.mjs';
 
 const projectRoot = process.cwd();
 const pagesDir = resolve(projectRoot, 'src/pages');
 const distDir = resolve(projectRoot, 'dist');
 const isDev = process.argv.includes('--dev');
+const basePath = normalizeBasePath();
 
 const htmlFiles = (await readdir(pagesDir)).filter((fileName) => fileName.endsWith('.html'));
 
@@ -46,11 +48,11 @@ for (const fileName of htmlFiles) {
   const outputPath = resolve(distDir, fileName);
   const source = await readFile(inputPath, 'utf8');
   const result = await processor.process(source);
-
-  const html = result.html
-    .replaceAll('../assets/css/index.css', `/css/${cssFileName}`)
-    .replaceAll('../assets/js/index.js', `/js/${jsFileName}`)
-    .replaceAll('../assets/', '/assets/');
+  const html = applyBasePathToHtml(result.html, {
+    basePath,
+    cssFileName,
+    jsFileName
+  });
 
   await writeFile(outputPath, html, 'utf8');
 }

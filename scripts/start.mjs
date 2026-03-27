@@ -2,10 +2,12 @@ import http from 'node:http';
 import { constants, createReadStream } from 'node:fs';
 import { access, stat } from 'node:fs/promises';
 import { extname, resolve } from 'node:path';
+import { normalizeBasePath, stripBasePath } from './build-paths.mjs';
 
 const projectRoot = process.cwd();
 const distDir = resolve(projectRoot, 'dist');
 const port = Number(process.env.PORT || 3000);
+const basePath = normalizeBasePath();
 
 const mimeTypes = {
   '.css': 'text/css; charset=utf-8',
@@ -35,7 +37,8 @@ const fileExists = async (filePath) => {
 };
 
 const getSafeFilePath = async (pathname) => {
-  const normalizedPath = pathname === '/' ? '/index.html' : pathname;
+  const normalizedRequestPath = stripBasePath(pathname, basePath);
+  const normalizedPath = normalizedRequestPath === '/' ? '/index.html' : normalizedRequestPath;
   const decodedPath = decodeURIComponent(normalizedPath);
   const requestedPath = resolve(distDir, `.${decodedPath}`);
 

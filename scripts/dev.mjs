@@ -6,7 +6,6 @@ const projectRoot = process.cwd();
 const devDir = resolve(projectRoot, '.dev');
 const cssDir = resolve(devDir, 'css');
 const jsDir = resolve(devDir, 'js');
-const parcelCliPath = resolve(projectRoot, 'node_modules/parcel/lib/cli.js');
 
 mkdirSync(cssDir, { recursive: true });
 mkdirSync(jsDir, { recursive: true });
@@ -39,30 +38,8 @@ const createChild = (label, args) => {
 };
 
 const processes = [
-  createChild('Parcel CSS watcher', [
-    parcelCliPath,
-    'watch',
-    'src/assets/css/index.css',
-    '--dist-dir',
-    '.dev/css',
-    '--public-url',
-    '/css',
-    '--no-source-maps',
-    '--no-content-hash',
-    '--no-hmr'
-  ]),
-  createChild('Parcel JS watcher', [
-    parcelCliPath,
-    'watch',
-    'src/assets/js/index.js',
-    '--dist-dir',
-    '.dev/js',
-    '--public-url',
-    '/js',
-    '--no-source-maps',
-    '--no-content-hash',
-    '--no-hmr'
-  ]),
+  createChild('Parcel CSS watcher', ['scripts/run-parcel.mjs', 'watch', 'css']),
+  createChild('Parcel JS watcher', ['scripts/run-parcel.mjs', 'watch', 'js']),
   createChild('Dev server', ['scripts/dev-server.mjs'])
 ];
 

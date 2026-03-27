@@ -5,6 +5,7 @@ import { extname, resolve } from 'node:path';
 
 import posthtml from 'posthtml';
 import include from 'posthtml-include';
+import { applyBasePathToHtml, normalizeBasePath, stripBasePath } from './build-paths.mjs';
 import { normalizeRequestPathname } from './dev-server-paths.mjs';
 
 const projectRoot = process.cwd();
@@ -14,6 +15,7 @@ const partialsDir = resolve(projectRoot, 'src/partials');
 const srcAssetsDir = resolve(projectRoot, 'src/assets');
 const publicAssetsDir = resolve(projectRoot, 'public/assets');
 const port = Number(process.env.PORT || 1234);
+const basePath = normalizeBasePath();
 const liveReloadClients = new Set();
 let reloadTimeoutId = null;
 const excludedSourceDirs = new Set(['css', 'js']);
@@ -82,11 +84,11 @@ const resolvePageName = async (pathname) => {
 const renderHtml = async (pageName) => {
   const source = await readFile(resolve(pagesDir, pageName), 'utf8');
   const result = await processor.process(source);
-
-  const html = result.html
-    .replaceAll('../assets/css/index.css', '/css/index.css')
-    .replaceAll('../assets/js/index.js', '/js/index.js')
-    .replaceAll('../assets/', '/assets/');
+  const html = applyBasePathToHtml(result.html, {
+    basePath,
+    cssFileName: 'index.css',
+    jsFileName: 'index.js'
+  });
 
   return injectLiveReload(html);
 };
@@ -204,7 +206,7 @@ const watchers = [
 const server = http.createServer(async (request, response) => {
   try {
     const url = new URL(request.url || '/', `http://localhost:${port}`);
-    const pathname = normalizeRequestPathname(url.pathname);
+    const pathname = stripBasePath(normalizeRequestPathname(url.pathname), basePath);
 
     if (pathname === '/__dev_reload') {
       response.writeHead(200, {
