@@ -1,3 +1,5 @@
+import Accordion from 'accordion-js';
+
 const GEOGRAPHY_DATA = [
   { id: 'ge', code: 'ge', country: 'Грузия', text: 'Грузия представляет собой важное направление с точки зрения снабжения внутреннего рынка и логистического транзита. Потребление нефтепродуктов формируется за счет транспорта, коммерческого сектора и инфраструктуры, а нефтехимическая продукция востребована в промышленном и сервисном сегментах. Дополнительное значение направлению придает роль Грузии как логистического хаба в акватории Черного моря.' },
   { id: 'kg', code: 'kg', country: 'Киргизия', text: 'Текст для Киргизии' },
@@ -16,29 +18,26 @@ export const initGeography = () => {
   const mapSvg = document.querySelector('.geography-map');
   const titleEl = document.querySelector('.title-geography-map');
   const textEl = document.querySelector('.text-geography-map');
+  const accordionContainer = document.getElementById('geography-accordion');
 
-  if (!mapCard || !mapSvg) return;
+  if (!mapCard || !mapSvg || !accordionContainer) return;
 
   const markersList = [];
 
+  // Logic for Map
   const setActive = (targetId) => {
     const activeItem = GEOGRAPHY_DATA.find(item => item.id === targetId);
     if (!activeItem) return;
 
-    // Обновляем текст и заголовок
     if (titleEl) titleEl.textContent = activeItem.country;
     if (textEl) textEl.textContent = activeItem.text;
 
-    // Сбрасываем все активные классы в SVG
     mapSvg.querySelectorAll('[data-country]').forEach(el => el.classList.remove('active'));
-    // Сбрасываем все активные классы у всех маркеров
     markersList.forEach(m => m.classList.remove('active'));
 
-    // Активируем группу страны в SVG
     const group = mapSvg.querySelector(`[data-country="${activeItem.code}"]`);
     if (group) group.classList.add('active');
 
-    // Активируем конкретный маркер
     const activeMarker = markersList.find(m => m.getAttribute('data-marker-id') === targetId);
     if (activeMarker) activeMarker.classList.add('active');
   };
@@ -59,6 +58,8 @@ export const initGeography = () => {
 
   const positionMarker = (marker, group, anchorSelector) => {
     const updatePosition = () => {
+      if (window.innerWidth <= 1200) return; // Don't position if hidden
+
       const svgRect = mapSvg.getBoundingClientRect();
       const cardRect = mapCard.getBoundingClientRect();
 
@@ -81,6 +82,29 @@ export const initGeography = () => {
     window.addEventListener('resize', updatePosition);
   };
 
+  // Logic for Accordion
+  const renderAccordion = () => {
+    accordionContainer.innerHTML = GEOGRAPHY_DATA.map(item => `
+      <div class="ac">
+        <h2 class="ac-header">
+          <button type="button" class="ac-trigger">${item.country}</button>
+        </h2>
+        <div class="ac-panel">
+          <p class="ac-text">${item.text}</p>
+        </div>
+      </div>
+    `).join('');
+
+    new Accordion('#geography-accordion', {
+      duration: 400,
+      showMultiple: false,
+      onOpen: (currentElement) => {
+        // Option to sync with map if needed, but they are hidden anyway
+      }
+    });
+  };
+
+  // Init Map elements
   GEOGRAPHY_DATA.forEach((item) => {
     const group = mapSvg.querySelector(`[data-country="${item.code}"]`);
     if (!group) return;
@@ -101,7 +125,8 @@ export const initGeography = () => {
     }
   });
 
-  // Устанавливаем первый элемент активным по умолчанию
+  renderAccordion();
+
   if (GEOGRAPHY_DATA.length > 0) {
     setActive(GEOGRAPHY_DATA[0].id);
   }
