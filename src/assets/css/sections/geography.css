@@ -1,35 +1,115 @@
+.geography {
+  background: var(--brand-id-blue);
+  color: white;
+  padding-top: 80px;
+  margin-top: 150px;
+
+  @media (max-width: 640px) {
+    margin-top: 80px;
+  }
+}
+
+.eyebrow {
+  color: white;
+}
+
+.eyebrow-text {
+  color: white;
+}
+
 .geography__title {
   max-width: 897px;
   margin-top: 16px;
 }
 
 .geography__map-card {
-  position: relative;
-  margin-top: 48px;
-  height: 750px;
-  overflow: hidden;
-  border-radius: 4px;
-  background: var(--brand-id-blue);
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  @media (max-width: 920px) {
-    height: 600px;
-  }
-
-  @media (max-width: 640px) {
-    height: 570px;
-    margin-top: 32px;
-  }
-
-  @media (max-width: 480px) {
-    height: 524px;
-  }
+  padding-block: 48px;
+  position: relative;
 }
 
 .geography-map {
   max-width: 100%;
   max-height: 100%;
   object-fit: cover;
+}
+
+[data-country] {
+  cursor: pointer;
+
+  path {
+    transition: 0.3s ease;
+  }
+
+  &.active {
+    path {
+      fill: white;
+    }
+  }
+}
+
+.geography__marker {
+  position: absolute;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: #4a7eeb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+  user-select: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+
+  &:hover {
+    scale: 1.2;
+  }
+
+  &:active {
+    scale: 0.9;
+  }
+
+  &.active {
+    background: var(--brand-id-blue);
+  }
+}
+
+.geography__content {
+  display: flex;
+  border-top: 1px solid #396ace;
+  margin-top: 48px;
+}
+
+.geography__sidebar {
+  border-left: 1px solid #396ace;
+  padding: 24px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.geography__sidebar-title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 117%;
+}
+
+.geography__sidebar-text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  margin-top: 16px;
 }

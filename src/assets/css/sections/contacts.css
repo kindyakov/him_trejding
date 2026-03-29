@@ -266,7 +266,7 @@
 .contacts-section__title {
   margin-top: 16px;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     font-size: 40px;
   }
 

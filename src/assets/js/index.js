@@ -12,6 +12,7 @@ import { initAboutCounters } from './modules/about-counters.mjs';
 import { initRevealLines } from './modules/reveal-lines.mjs';
 import { initWhyChoose } from './modules/why-choose.mjs';
 import { useDynamicAdapt } from './modules/dynamicAdapt';
+import { initGeography } from './modules/geography.js';
 
 window.addEventListener('DOMContentLoaded', () => {
   AOS.init({
@@ -35,6 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const dialog = initRequestPriceModal();
   initRequestForms(dialog);
+  initGeography();
 
   useDynamicAdapt();
 });
