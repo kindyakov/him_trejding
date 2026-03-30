@@ -1,36 +1,124 @@
 import Accordion from 'accordion-js';
 
-const GEOGRAPHY_DATA = [
-  { id: 'ge', code: 'ge', country: 'Грузия', text: 'Грузия представляет собой важное направление с точки зрения снабжения внутреннего рынка и логистического транзита. Потребление нефтепродуктов формируется за счет транспорта, коммерческого сектора и инфраструктуры, а нефтехимическая продукция востребована в промышленном и сервисном сегментах. Дополнительное значение направлению придает роль Грузии как логистического хаба в акватории Черного моря.' },
-  { id: 'kg', code: 'kg', country: 'Киргизия', text: 'Текст для Киргизии' },
-  { id: 'ru-baltic', code: 'ru', country: 'Балтийские порты РФ', text: 'Балтийское направление является важным каналом для перевалки и экспортной логистики нефтепродуктов и нефтехимической продукции. Оно востребовано для организации поставок в адрес международных рынков, где особое значение имеют гибкость маршрутов, ритмичность отгрузок и эффективность портовой инфраструктуры.', anchor: 'ru-petersburg' },
-  { id: 'ru-fareast', code: 'ru', country: 'Дальневосточные порты РФ', text: 'Дальневосточное направление имеет стратегическое значение для организации экспортных поставок в страны Азии. Портовая инфраструктура региона используется для вывоза нефтепродуктов и нефтехимической продукции на быстрорастущие рынки, где особенно важны надежность логистики и доступ к морским маршрутам.', anchor: 'ru-vladivostok' },
-  { id: 'cn', code: 'cn', country: 'Китай', text: 'Китай остается одним из крупнейших мировых центров потребления сырья, нефтепродуктов и продукции нефтехимии. Это направление отличается высокой емкостью рынка, развитой промышленной базой и устойчивым спросом со стороны производственных, энергетических и перерабатывающих отраслей.' },
-  { id: 'tj', code: 'tj', country: 'Таджикистан', text: 'Для рынка Таджикистана характерен стабильный спрос на нефтепродукты, обеспечивающие транспорт, строительный сектор, промышленность и локальную инфраструктуру. Нефтехимическая продукция востребована в сегментах, связанных с производственными, хозяйственными и техническими нуждами.' },
-  { id: 'ua', code: 'ua', country: 'Черноморские порты РФ', text: 'Черноморское направление играет важную роль в экспортной логистике и доступе к широкому кругу зарубежных рынков. Этот маршрут используется для поставок нефтепродуктов и нефтехимической продукции с акцентом на оперативность перевалки, оптимизацию логистики и дальнейшее распределение по внешним направлениям.' },
-  { id: 'kz', code: 'kz', country: 'Казахстан', text: 'Казахстан — крупный и диверсифицированный рынок с широким потреблением нефтепродуктов в промышленности, добывающем секторе, транспорте и сельском хозяйстве. Существенный спрос на нефтехимическую продукцию поддерживается производственными предприятиями, переработкой и смежными отраслями.' },
-  { id: 'uz', code: 'uz', country: 'Узбекистан', text: 'Узбекистан — один из наиболее емких и динамично развивающихся рынков региона с высоким потреблением нефтепродуктов со стороны промышленности, транспорта, аграрного сектора и инфраструктурных проектов. Одновременно сохраняется стабильный спрос на нефтехимическую продукцию для производственных и перерабатывающих предприятий.' },
-  { id: 'mn', code: 'mn', country: 'Монголия', text: 'Рынок Монголии характеризуется стабильной потребностью в нефтепродуктах для транспорта, горнодобывающего сектора, строительства и инфраструктуры. Спрос на нефтехимическую продукцию формируется преимущественно за счет промышленных, технических и сопутствующих хозяйственных нужд.' },
-];
-
 export const initGeography = () => {
   const mapCard = document.querySelector('.geography__map-card');
   const mapSvg = document.querySelector('.geography-map');
+  const sidebarCopy = document.querySelector('.geography__sidebar-copy');
+  const sidebarCopyInner = document.querySelector('.geography__sidebar-copy-inner');
   const titleEl = document.querySelector('.title-geography-map');
   const textEl = document.querySelector('.text-geography-map');
   const accordionContainer = document.getElementById('geography-accordion');
+  const datasetRoot = document.querySelector('.geography__dataset');
 
-  if (!mapCard || !mapSvg || !accordionContainer) return;
+  if (!mapCard || !mapSvg || !accordionContainer || !datasetRoot) return;
 
   const markersList = [];
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const CONTENT_EXIT_DURATION = 180;
+  const CONTENT_SETTLE_DURATION = 320;
+  let contentExitTimer = null;
+  let contentSettleTimer = null;
+  let hasRenderedInitialContent = false;
+  const geographyData = Array.from(datasetRoot.querySelectorAll('.geography__item-data'))
+    .map((itemEl) => {
+      const id = itemEl.dataset.id?.trim();
+      const code = itemEl.dataset.code?.trim();
+      const country = itemEl.querySelector('.geography__item-title')?.textContent?.trim();
+      const textHtml = itemEl.querySelector('.geography__item-text')?.innerHTML?.trim();
+
+      if (!id || !code || !country || !textHtml) {
+        return null;
+      }
+
+      return {
+        id,
+        code,
+        country,
+        textHtml,
+        anchor: itemEl.dataset.anchor?.trim() || '',
+      };
+    })
+    .filter(Boolean);
+
+  if (geographyData.length === 0) return;
+
+  const applySidebarContent = (item) => {
+    if (titleEl) titleEl.textContent = item.country;
+    if (textEl) textEl.innerHTML = item.textHtml;
+  };
+
+  const resetSidebarAnimationState = () => {
+    if (contentExitTimer) {
+      window.clearTimeout(contentExitTimer);
+      contentExitTimer = null;
+    }
+
+    if (contentSettleTimer) {
+      window.clearTimeout(contentSettleTimer);
+      contentSettleTimer = null;
+    }
+
+    if (sidebarCopyInner) {
+      sidebarCopyInner.classList.remove('is-leaving', 'is-entering');
+    }
+
+    if (sidebarCopy) {
+      sidebarCopy.style.height = '';
+    }
+  };
+
+  const animateSidebarContent = (item) => {
+    if (!titleEl || !textEl || !sidebarCopy || !sidebarCopyInner || prefersReducedMotion.matches) {
+      resetSidebarAnimationState();
+      applySidebarContent(item);
+      return;
+    }
+
+    if (
+      hasRenderedInitialContent &&
+      titleEl.textContent === item.country &&
+      textEl.textContent === item.text
+    ) {
+      return;
+    }
+
+    if (!hasRenderedInitialContent) {
+      applySidebarContent(item);
+      hasRenderedInitialContent = true;
+      return;
+    }
+
+    resetSidebarAnimationState();
+
+    sidebarCopy.style.height = `${sidebarCopy.offsetHeight}px`;
+    sidebarCopy.offsetHeight;
+    sidebarCopyInner.classList.add('is-leaving');
+
+    contentExitTimer = window.setTimeout(() => {
+      applySidebarContent(item);
+      sidebarCopy.style.height = `${sidebarCopyInner.offsetHeight}px`;
+      sidebarCopyInner.classList.remove('is-leaving');
+      sidebarCopyInner.classList.add('is-entering');
+
+      requestAnimationFrame(() => {
+        sidebarCopyInner.classList.remove('is-entering');
+      });
+
+      contentSettleTimer = window.setTimeout(() => {
+        sidebarCopy.style.height = '';
+        contentSettleTimer = null;
+      }, CONTENT_SETTLE_DURATION);
+
+      contentExitTimer = null;
+    }, CONTENT_EXIT_DURATION);
+  };
 
   // Logic for Map
   const setActive = (targetId) => {
-    const activeItem = GEOGRAPHY_DATA.find(item => item.id === targetId);
+    const activeItem = geographyData.find(item => item.id === targetId);
     if (!activeItem) return;
 
-    if (titleEl) titleEl.textContent = activeItem.country;
-    if (textEl) textEl.textContent = activeItem.text;
+    animateSidebarContent(activeItem);
 
     mapSvg.querySelectorAll('[data-country]').forEach(el => el.classList.remove('active'));
     markersList.forEach(m => m.classList.remove('active'));
@@ -60,18 +148,28 @@ export const initGeography = () => {
     const updatePosition = () => {
       if (window.innerWidth <= 1200) return; // Don't position if hidden
 
-      const svgRect = mapSvg.getBoundingClientRect();
       const cardRect = mapCard.getBoundingClientRect();
-
       const targetElement = anchorSelector ? group.querySelector(`[data-anchor="${anchorSelector}"]`) : group;
       if (!targetElement) return;
 
       const targetBounds = targetElement.getBBox();
-      const scaleX = svgRect.width / mapSvg.viewBox.baseVal.width;
-      const scaleY = svgRect.height / mapSvg.viewBox.baseVal.height;
+      const matrix = targetElement.getScreenCTM?.();
+      let left;
+      let top;
 
-      const left = (svgRect.left - cardRect.left) + (targetBounds.x + targetBounds.width / 2) * scaleX;
-      const top = (svgRect.top - cardRect.top) + (targetBounds.y + targetBounds.height / 2) * scaleY;
+      if (matrix) {
+        const screenPoint = new DOMPoint(
+          targetBounds.x + targetBounds.width / 2,
+          targetBounds.y + targetBounds.height / 2,
+        ).matrixTransform(matrix);
+
+        left = screenPoint.x - cardRect.left;
+        top = screenPoint.y - cardRect.top;
+      } else {
+        const targetRect = targetElement.getBoundingClientRect();
+        left = targetRect.left - cardRect.left + targetRect.width / 2;
+        top = targetRect.top - cardRect.top + targetRect.height / 2;
+      }
 
       marker.style.left = `${left}px`;
       marker.style.top = `${top}px`;
@@ -84,13 +182,13 @@ export const initGeography = () => {
 
   // Logic for Accordion
   const renderAccordion = () => {
-    accordionContainer.innerHTML = GEOGRAPHY_DATA.map(item => `
+    accordionContainer.innerHTML = geographyData.map(item => `
       <div class="ac">
         <h2 class="ac-header">
           <button type="button" class="ac-trigger">${item.country}</button>
         </h2>
         <div class="ac-panel">
-          <p class="ac-text">${item.text}</p>
+          <div class="ac-text">${item.textHtml}</div>
         </div>
       </div>
     `).join('');
@@ -105,7 +203,7 @@ export const initGeography = () => {
   };
 
   // Init Map elements
-  GEOGRAPHY_DATA.forEach((item) => {
+  geographyData.forEach((item) => {
     const group = mapSvg.querySelector(`[data-country="${item.code}"]`);
     if (!group) return;
 
@@ -118,7 +216,7 @@ export const initGeography = () => {
     if (!group.dataset.hasClick) {
       group.style.cursor = 'pointer';
       group.addEventListener('click', () => {
-        const firstItemWithCode = GEOGRAPHY_DATA.find(d => d.code === item.code);
+        const firstItemWithCode = geographyData.find(d => d.code === item.code);
         if (firstItemWithCode) setActive(firstItemWithCode.id);
       });
       group.dataset.hasClick = 'true';
@@ -127,7 +225,5 @@ export const initGeography = () => {
 
   renderAccordion();
 
-  if (GEOGRAPHY_DATA.length > 0) {
-    setActive(GEOGRAPHY_DATA[0].id);
-  }
+  setActive(geographyData[0].id);
 };

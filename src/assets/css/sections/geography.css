@@ -105,6 +105,29 @@
   width: 100%;
 }
 
+.geography__sidebar-copy {
+  overflow: hidden;
+  transition: height 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.geography__sidebar-copy-inner {
+  transform-origin: top left;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.2s ease,
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.geography__sidebar-copy-inner.is-leaving {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.geography__sidebar-copy-inner.is-entering {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
 .geography__sidebar-title {
   font-weight: 600;
   font-size: 24px;
@@ -116,6 +139,21 @@
   font-size: 16px;
   line-height: 125%;
   margin-top: 16px;
+}
+
+.geography__sidebar-text > * {
+  margin: 0;
+}
+
+.geography__sidebar-text > * + * {
+  margin-top: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .geography__sidebar-copy,
+  .geography__sidebar-copy-inner {
+    transition: none;
+  }
 }
 
 /* Accordion */
@@ -182,4 +220,12 @@
   color: rgba(255, 255, 255, 0.8);
   padding: 0 0 20px;
   margin: 0;
+}
+
+.ac .ac-panel .ac-text > * {
+  margin: 0;
+}
+
+.ac .ac-panel .ac-text > * + * {
+  margin-top: 12px;
 }

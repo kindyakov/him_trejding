@@ -15,16 +15,84 @@
         <include src="../partials/map.html"></include>
       </div>
       <aside class="geography__sidebar">
-        <h3 class="geography__sidebar-title title-geography-map">Наши рынки</h3>
-        <p class="geography__sidebar-text text-geography-map">Мы присутствуем на ключевых рынках мира, обеспечивая
-          высокое качество
-          продукции и надежное обслуживание.</p>
+        <div class="geography__sidebar-copy">
+          <div class="geography__sidebar-copy-inner">
+            <h3 class="geography__sidebar-title title-geography-map">Наши рынки</h3>
+            <div class="geography__sidebar-text text-geography-map">
+              <p>Мы присутствуем на ключевых рынках мира, обеспечивая высокое качество продукции и надежное обслуживание.</p>
+            </div>
+          </div>
+        </div>
       </aside>
     </div>
 
     <!-- Accordion for screens <= 1200px -->
     <div class="geography__accordion-container" id="geography-accordion">
       <!-- Will be populated by JS -->
+    </div>
+
+    <div class="geography__dataset" hidden>
+      <article class="geography__item-data" data-id="ge" data-code="ge">
+        <h3 class="geography__item-title">Грузия</h3>
+        <div class="geography__item-text">
+          <p>Грузия представляет собой важное направление с точки зрения снабжения внутреннего рынка и логистического транзита. Потребление нефтепродуктов формируется за счет транспорта, коммерческого сектора и инфраструктуры, а нефтехимическая продукция востребована в промышленном и сервисном сегментах.</p>
+          <p>Дополнительное значение направлению придает роль Грузии как логистического хаба в акватории Черного моря.</p>
+        </div>
+      </article>
+      <article class="geography__item-data" data-id="kg" data-code="kg">
+        <h3 class="geography__item-title">Киргизия</h3>
+        <div class="geography__item-text">
+          <p>Текст для Киргизии.</p>
+        </div>
+      </article>
+      <article class="geography__item-data" data-id="ru-baltic" data-code="ru" data-anchor="ru-petersburg">
+        <h3 class="geography__item-title">Балтийские порты РФ</h3>
+        <div class="geography__item-text">
+          <p>Балтийское направление является важным каналом для перевалки и экспортной логистики нефтепродуктов и нефтехимической продукции. Оно востребовано для организации поставок в адрес международных рынков, где особое значение имеют гибкость маршрутов, ритмичность отгрузок и эффективность портовой инфраструктуры.</p>
+        </div>
+      </article>
+      <article class="geography__item-data" data-id="ru-fareast" data-code="ru" data-anchor="ru-vladivostok">
+        <h3 class="geography__item-title">Дальневосточные порты РФ</h3>
+        <div class="geography__item-text">
+          <p>Дальневосточное направление имеет стратегическое значение для организации экспортных поставок в страны Азии. Портовая инфраструктура региона используется для вывоза нефтепродуктов и нефтехимической продукции на быстрорастущие рынки, где особенно важны надежность логистики и доступ к морским маршрутам.</p>
+        </div>
+      </article>
+      <article class="geography__item-data" data-id="cn" data-code="cn">
+        <h3 class="geography__item-title">Китай</h3>
+        <div class="geography__item-text">
+          <p>Китай остается одним из крупнейших мировых центров потребления сырья, нефтепродуктов и продукции нефтехимии. Это направление отличается высокой емкостью рынка, развитой промышленной базой и устойчивым спросом со стороны производственных, энергетических и перерабатывающих отраслей.</p>
+        </div>
+      </article>
+      <article class="geography__item-data" data-id="tj" data-code="tj">
+        <h3 class="geography__item-title">Таджикистан</h3>
+        <div class="geography__item-text">
+          <p>Для рынка Таджикистана характерен стабильный спрос на нефтепродукты, обеспечивающие транспорт, строительный сектор, промышленность и локальную инфраструктуру. Нефтехимическая продукция востребована в сегментах, связанных с производственными, хозяйственными и техническими нуждами.</p>
+        </div>
+      </article>
+      <article class="geography__item-data" data-id="ua" data-code="ua">
+        <h3 class="geography__item-title">Черноморские порты РФ</h3>
+        <div class="geography__item-text">
+          <p>Черноморское направление играет важную роль в экспортной логистике и доступе к широкому кругу зарубежных рынков. Этот маршрут используется для поставок нефтепродуктов и нефтехимической продукции с акцентом на оперативность перевалки, оптимизацию логистики и дальнейшее распределение по внешним направлениям.</p>
+        </div>
+      </article>
+      <article class="geography__item-data" data-id="kz" data-code="kz">
+        <h3 class="geography__item-title">Казахстан</h3>
+        <div class="geography__item-text">
+          <p>Казахстан — крупный и диверсифицированный рынок с широким потреблением нефтепродуктов в промышленности, добывающем секторе, транспорте и сельском хозяйстве. Существенный спрос на нефтехимическую продукцию поддерживается производственными предприятиями, переработкой и смежными отраслями.</p>
+        </div>
+      </article>
+      <article class="geography__item-data" data-id="uz" data-code="uz">
+        <h3 class="geography__item-title">Узбекистан</h3>
+        <div class="geography__item-text">
+          <p>Узбекистан — один из наиболее емких и динамично развивающихся рынков региона с высоким потреблением нефтепродуктов со стороны промышленности, транспорта, аграрного сектора и инфраструктурных проектов. Одновременно сохраняется стабильный спрос на нефтехимическую продукцию для производственных и перерабатывающих предприятий.</p>
+        </div>
+      </article>
+      <article class="geography__item-data" data-id="mn" data-code="mn">
+        <h3 class="geography__item-title">Монголия</h3>
+        <div class="geography__item-text">
+          <p>Рынок Монголии характеризуется стабильной потребностью в нефтепродуктах для транспорта, горнодобывающего сектора, строительства и инфраструктуры. Спрос на нефтехимическую продукцию формируется преимущественно за счет промышленных, технических и сопутствующих хозяйственных нужд.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
