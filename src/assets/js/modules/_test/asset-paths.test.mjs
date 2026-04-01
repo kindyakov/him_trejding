@@ -25,6 +25,18 @@ test('getBasePath normalizes the meta base path value', () => {
   assert.equal(getBasePath(root), '/him_trejding/');
 });
 
+test('getBasePath preserves absolute base urls for WordPress theme assets', () => {
+  const root = {
+    querySelector(selector) {
+      return selector === 'meta[name="app-base-path"]'
+        ? { content: 'https://himtrejding/wp-content/themes/himtrejding/' }
+        : null;
+    }
+  };
+
+  assert.equal(getBasePath(root), 'https://himtrejding/wp-content/themes/himtrejding/');
+});
+
 test('getAssetPath prefixes asset paths with the configured base path', () => {
   const root = {
     querySelector(selector) {
@@ -37,5 +49,20 @@ test('getAssetPath prefixes asset paths with the configured base path', () => {
   assert.equal(
     getAssetPath('/assets/models/Logo-Tech-Trade-for-site.glb', root),
     '/him_trejding/assets/models/Logo-Tech-Trade-for-site.glb'
+  );
+});
+
+test('getAssetPath resolves absolute WordPress theme urls without duplicating the host', () => {
+  const root = {
+    querySelector(selector) {
+      return selector === 'meta[name="app-base-path"]'
+        ? { content: 'https://himtrejding/wp-content/themes/himtrejding/' }
+        : null;
+    }
+  };
+
+  assert.equal(
+    getAssetPath('/assets/models/Logo-Tech-Trade-for-site.glb', root),
+    'https://himtrejding/wp-content/themes/himtrejding/assets/models/Logo-Tech-Trade-for-site.glb'
   );
 });
