@@ -12,7 +12,7 @@
   flex-wrap: wrap;
   gap: 8px;
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     margin-top: 86px;
   }
 }
@@ -51,7 +51,7 @@
 .legal-document {
   margin-top: 74px;
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     margin-top: 48px;
   }
 
@@ -64,7 +64,7 @@
   margin-top: 80px;
   max-width: 900px;
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     margin-top: 64px;
   }
 }

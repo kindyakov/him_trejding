@@ -16,7 +16,7 @@
   max-width: 911px;
   margin-top: 16px;
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     margin-top: 12px;
   }
 }
@@ -31,7 +31,7 @@
     gap: 30px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     margin-top: 32px;
     gap: 16px;
   }
@@ -52,7 +52,7 @@
     font-size: 20px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     font-size: 18px;
     line-height: 111%;
   }
@@ -91,7 +91,7 @@
   padding: 0;
   list-style: none;
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     margin-top: 32px;
     gap: 32px 16px;
   }
@@ -117,7 +117,7 @@
   line-height: 100%;
   font-variant-numeric: tabular-nums;
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     font-size: 60px;
     line-height: 107%;
   }

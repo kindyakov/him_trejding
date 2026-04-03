@@ -1,15 +1,62 @@
-const CONTACTS_MAP_MARKERS = [
-  {
-    id: 'moscow-office',
-    title: 'Представительство в России',
-    description: 'Ленинградский проспект, 36, стр. 39, Москва',
-    lat: 55.790236,
-    lng: 37.567231,
-    href: 'https://yandex.ru/maps/?text=%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B3%D1%80%D0%B0%D0%B4%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%2C%2036%20%D1%81%D1%82%D1%80.%2039%2C%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0'
-  }
-];
-
 const YANDEX_MAPS_SCRIPT_ID = 'yandex-maps-js';
+
+const parseJsonIfNeeded = (value) => {
+  if (typeof value !== 'string') {
+    return value;
+  }
+
+  try {
+    return JSON.parse(value);
+  } catch {
+    return value;
+  }
+};
+
+const getWpData = () => {
+  const candidates = [window.wpData, window['wp-data'], window.wp_data];
+
+  for (const candidate of candidates) {
+    const parsedCandidate = parseJsonIfNeeded(candidate);
+
+    if (parsedCandidate && typeof parsedCandidate === 'object' && !Array.isArray(parsedCandidate)) {
+      return parsedCandidate;
+    }
+  }
+
+  return null;
+};
+
+const isMarker = (marker) =>
+  marker &&
+  typeof marker === 'object' &&
+  typeof marker.title === 'string' &&
+  typeof marker.description === 'string' &&
+  typeof marker.href === 'string' &&
+  Number.isFinite(Number(marker.lat)) &&
+  Number.isFinite(Number(marker.lng));
+
+const normalizeMarker = (marker) => ({
+  id: typeof marker.id === 'string' && marker.id ? marker.id : `marker-${String(marker.lat)}-${String(marker.lng)}`,
+  title: marker.title,
+  description: marker.description,
+  lat: Number(marker.lat),
+  lng: Number(marker.lng),
+  href: marker.href
+});
+
+const getContactsMapMarkers = () => {
+  const markers = parseJsonIfNeeded(getWpData()?.CONTACTS_MAP_MARKERS);
+
+  if (!Array.isArray(markers)) {
+    if (markers && typeof markers === 'object') {
+      return Object.values(markers).filter(isMarker).map(normalizeMarker);
+    }
+
+    return [];
+  }
+
+  return markers.filter(isMarker).map(normalizeMarker);
+};
 
 const getMetaContent = (name) =>
   document.querySelector(`meta[name="${name}"]`)?.getAttribute('content')?.trim() || '';
@@ -65,7 +112,11 @@ const createMarkerContent = (marker) => {
 
   const tooltip = document.createElement('span');
   tooltip.className = 'contacts-map__tooltip';
-  tooltip.innerHTML = `<strong>${marker.title}</strong><span>${marker.lat}, ${marker.lng}</span>`;
+  const tooltipTitle = document.createElement('strong');
+  tooltipTitle.textContent = marker.title;
+
+  const tooltipCoordinates = document.createElement('span');
+  tooltipCoordinates.textContent = `${marker.lat}, ${marker.lng}`;
 
   wrapper.innerHTML = `
     <span class="contacts-map__pin" aria-hidden="true">
@@ -74,6 +125,7 @@ const createMarkerContent = (marker) => {
       </svg>
     </span>
   `;
+  tooltip.append(tooltipTitle, tooltipCoordinates);
   wrapper.append(tooltip);
 
   return wrapper;
@@ -99,7 +151,8 @@ const initYandexMap = async (container) => {
     YMapDefaultFeaturesLayer,
     YMapMarker
   } = ymaps3;
-  const center = CONTACTS_MAP_MARKERS[0] ? toYandexCoordinates(CONTACTS_MAP_MARKERS[0]) : [37.5567, 55.7945];
+  const markers = getContactsMapMarkers();
+  const center = markers[0] ? toYandexCoordinates(markers[0]) : [37.5567, 55.7945];
 
   const map = new YMap(container, {
     location: {
@@ -111,7 +164,7 @@ const initYandexMap = async (container) => {
   map.addChild(new YMapDefaultSchemeLayer());
   map.addChild(new YMapDefaultFeaturesLayer());
 
-  CONTACTS_MAP_MARKERS.forEach((marker) => {
+  markers.forEach((marker) => {
     map.addChild(
       new YMapMarker(
         {
@@ -140,4 +193,4 @@ export const initContactsMap = async () => {
   }
 };
 
-export { CONTACTS_MAP_MARKERS };
+export { getContactsMapMarkers };

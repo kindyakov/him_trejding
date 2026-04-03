@@ -70,7 +70,7 @@
   background: #dcdcdc;
 
   @media (max-width: 1400px) {
-    height: 380px;
+    height: 330px;
   }
 
   @media (max-width: 480px) {
@@ -98,7 +98,7 @@
   font-weight: 600;
   line-height: 117%;
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     font-size: 18px;
     line-height: 111%;
   }

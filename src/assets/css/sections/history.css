@@ -30,7 +30,7 @@
     font-size: 120px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     font-size: 80px;
   }
 }

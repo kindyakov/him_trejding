@@ -283,7 +283,7 @@
   line-height: 116%;
   color: var(--brand-id-black);
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     font-size: 18px;
     margin-top: 16px;
   }

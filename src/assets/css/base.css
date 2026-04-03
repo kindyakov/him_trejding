@@ -105,7 +105,7 @@ button {
 .section {
   padding-top: 150px;
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     padding-top: 80px;
   }
 }
@@ -144,7 +144,7 @@ button {
   font-weight: 600;
   line-height: 107%;
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     font-size: 44px;
     line-height: 95%;
   }

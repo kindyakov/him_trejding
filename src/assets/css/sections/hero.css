@@ -66,12 +66,13 @@
   line-height: 1;
   letter-spacing: -0.03em;
 
-  @media (max-width: 640px) {
+  @media (max-width: 1400px) {
     font-size: 60px;
     line-height: 107%;
+    max-width: 554px;
   }
 
-  @media (max-width: 540px) {
+  @media (max-width: 768px) {
     font-size: 50px;
   }
 
@@ -79,7 +80,7 @@
     font-size: 44px;
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 380px) {
     font-size: 38px;
   }
 }
@@ -116,15 +117,11 @@
 
 .hero__description {
   max-width: 569px;
-  font-size: clamp(18px, 1.45vw, 24px);
+  font-size: 24px;
   font-weight: 600;
   line-height: 117%;
 
-  @media (max-width: 1024px) {
-    max-width: 569px;
-  }
-
-  @media (max-width: 767px) {
+  @media (max-width: 1400px) {
     font-size: 18px;
   }
 }
