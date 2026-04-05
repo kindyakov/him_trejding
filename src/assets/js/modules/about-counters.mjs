@@ -4,9 +4,17 @@ const DURATION_MS = 2000;
 
 const easeOutCubic = (progress) => 1 - (1 - progress) ** 3;
 
+const getDecimalPlaces = (rawValue) => {
+  const normalized = String(rawValue ?? '').trim().replace(',', '.');
+  const [, fraction = ''] = normalized.split('.');
+
+  return fraction.length;
+};
+
 const getCounterConfig = (element) => {
-  const value = Number.parseFloat(element.dataset.counterValue ?? element.textContent ?? '0');
-  const decimals = Number.parseInt(element.dataset.counterDecimals ?? '0', 10) || 0;
+  const rawValue = element.dataset.counterValue ?? element.textContent ?? '0';
+  const value = Number.parseFloat(rawValue);
+  const decimals = getDecimalPlaces(rawValue);
   const suffix = element.dataset.counterSuffix ?? '';
 
   return {

@@ -20,6 +20,7 @@
 @import './sections/footer.css';
 @import './sections/modal.css';
 @import './sections/request-form.css';
+@import './sections/not-found.css';
 
 .hidden {
   display: none;

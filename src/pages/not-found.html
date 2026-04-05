@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang=ru>
+
+<head>
+  <meta charset=utf-8 />
+  <meta name=viewport content=width=device-width, initial-scale=1 />
+  <title>Страница не найдена - Him Trading</title>
+  <meta name=description content="" />
+  <link rel=icon href=../assets/images/favicon.ico />
+  <link rel=preconnect href=https://fonts.googleapis.com />
+  <link rel=preconnect href=https://fonts.gstatic.com crossorigin />
+  <link
+    href=https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV@100..900,0&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap
+    rel=stylesheet />
+  <link rel=stylesheet href=../assets/css/index.css />
+  <script type=module defer src=../assets/js/index.js></script>
+</head>
+
+<body>
+  <include src=../partials/sprite.html></include>
+  <include src=../partials/header.html></include>
+
+  <main class=page legal-page>
+    <section class="not-found">
+      <picture class="not-found__bg">
+        <source media="(max-width: 380px)" srcset="/assets/images/not-found-bg-mobile.png">
+        <source media="(max-width: 768px)" srcset="/assets/images/not-found-bg-tablet.png">
+        <img class="stages__background" src="/assets/images/not-found-bg.png" alt="Фоновая картинка" width="1824"
+          height="700">
+      </picture>
+      <div class="not-found__container container">
+        <nav class="legal-breadcrumbs" aria-label="Хлебные крошки">
+          <a class="legal-breadcrumbs__item" href="/">Главная</a>
+          <span class="legal-breadcrumbs__item legal-breadcrumbs__item--span" aria-current="page">
+            404
+          </span>
+        </nav>
+
+        <div class="not-found__content">
+          <div class="not-found__error">404</div>
+          <div class="not-found__block-text">
+            <b>Страница не найдена</b>
+
+            <p>
+              Запрашиваемая страница не существует или была перемещена. Проверьте корректность ссылки или перейдите в
+              нужный раздел
+              сайта.
+            </p>
+          </div>
+          <a class="not-found__link button-primary aos-init aos-animate" href="/" data-aos="fade-up"
+            data-aos-delay="240">
+            <span class="button-primary__icon" aria-hidden="true"></span>
+            <span class="button-primary__text">На главную страницу</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <include src=../partials/footer.html></include>
+</body>
+
+</html>

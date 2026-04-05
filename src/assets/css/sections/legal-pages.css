@@ -12,7 +12,7 @@
   flex-wrap: wrap;
   gap: 8px;
 
-  @media (max-width: 1400px) {
+  @media (max-width: 768px) {
     margin-top: 86px;
   }
 }
