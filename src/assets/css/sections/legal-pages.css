@@ -1,5 +1,7 @@
 .legal-page {
   padding-top: 122px;
+  position: relative;
+  z-index: 5;
 
   @media (max-width: 768px) {
     padding-top: 98px;
