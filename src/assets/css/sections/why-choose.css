@@ -41,11 +41,11 @@
 
 .why-choose__intro {
   width: 100%;
-  max-width: 568px;
+  max-width: 592px;
   padding-top: 41px;
 
-  @media (max-width: 1200px) {
-    max-width: 608px;
+  @media (max-width: 1400px) {
+    max-width: 429px;
     padding-top: 0;
   }
 
@@ -60,7 +60,7 @@
   line-height: 117%;
   color: var(--brand-id-black);
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     font-size: 18px;
     line-height: 111%;
   }
@@ -118,7 +118,7 @@
   gap: 140px;
 
   @media (max-width: 1400px) {
-    max-width: 400px;
+    max-width: 429px;
     gap: 110px;
   }
 
@@ -237,7 +237,7 @@
   line-height: 117%;
   color: var(--brand-id-black);
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     font-size: 18px;
     line-height: 111%;
   }
