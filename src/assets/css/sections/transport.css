@@ -51,6 +51,8 @@
   }
 
   @media (max-width: 768px) {
+    padding-inline: 0;
+
     &:not(:last-child) {
       border-bottom: 1px solid var(--extra-gray-3);
     }

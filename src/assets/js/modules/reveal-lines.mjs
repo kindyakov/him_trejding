@@ -11,6 +11,18 @@ export const normalizeTextSegments = (text) => text
   .map((segment) => segment.replace(/\s+/g, ' ').trim())
   .filter(Boolean);
 
+export const createRevealLineModels = (lines) => lines.map((line, lineIndex) => {
+  const words = line.match(/\S+/g) ?? [];
+
+  return {
+    lineDelay: getStaggerDelay(lineIndex),
+    words: words.map((word) => ({
+      text: word,
+      chars: Array.from(word).map((char) => ({ text: char }))
+    }))
+  };
+});
+
 export const collectLineGroups = (nodes) => {
   const lines = [];
   let currentTop = null;
@@ -106,16 +118,40 @@ const createMeasureLayer = (segments) => {
 
 const buildLineNodes = (lines) => {
   const fragment = document.createDocumentFragment();
+  const lineModels = createRevealLineModels(lines);
 
-  lines.forEach((line, index) => {
+  lineModels.forEach((lineModel) => {
     const mask = document.createElement('span');
     const inner = document.createElement('span');
 
     mask.className = 'reveal-lines__line';
-    mask.style.setProperty('--reveal-line-delay', getStaggerDelay(index));
+    mask.setAttribute('aria-hidden', 'true');
+    mask.style.setProperty('--reveal-line-delay', lineModel.lineDelay);
 
     inner.className = 'reveal-lines__line-inner';
-    inner.textContent = line;
+    inner.setAttribute('aria-hidden', 'true');
+
+    lineModel.words.forEach((wordModel, wordIndex) => {
+      const word = document.createElement('span');
+
+      word.className = 'reveal-lines__word';
+      word.setAttribute('aria-hidden', 'true');
+
+      wordModel.chars.forEach((charModel) => {
+        const char = document.createElement('span');
+
+        char.className = 'reveal-lines__char';
+        char.textContent = charModel.text;
+        char.setAttribute('aria-hidden', 'true');
+        word.append(char);
+      });
+
+      inner.append(word);
+
+      if (wordIndex < lineModel.words.length - 1) {
+        inner.append(document.createTextNode(' '));
+      }
+    });
 
     mask.append(inner);
     fragment.append(mask);
@@ -127,6 +163,13 @@ const buildLineNodes = (lines) => {
 const prepareHeading = (heading) => {
   if (!heading.dataset.revealLinesSource) {
     heading.dataset.revealLinesSource = extractSourceText(heading);
+  }
+
+  if (!heading.hasAttribute('aria-label')) {
+    heading.setAttribute(
+      'aria-label',
+      heading.dataset.revealLinesSource.replace(/\s+/g, ' ').trim()
+    );
   }
 
   const width = Math.round(heading.getBoundingClientRect().width);

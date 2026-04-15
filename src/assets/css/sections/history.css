@@ -79,6 +79,10 @@
     color 0.25s ease,
     transform 0.25s ease;
 
+  &:first-child {
+    padding-left: 0;
+  }
+
   @media (hover: hover) {
     &:hover {
       color: var(--brand-id-black);

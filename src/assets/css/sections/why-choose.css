@@ -32,11 +32,6 @@
 
 .why-choose__title {
   margin-top: 16px;
-  max-width: 1171px;
-
-  @media (max-width: 1200px) {
-    max-width: 760px;
-  }
 }
 
 .why-choose__intro {
