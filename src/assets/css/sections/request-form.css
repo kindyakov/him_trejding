@@ -220,6 +220,23 @@
   display: block;
 }
 
+.request-form.is-loading button[type="submit"] {
+  position: relative;
+  overflow: hidden;
+
+  .button-primary__icon::after {
+    opacity: 0;
+  }
+
+  &::before {
+    content: '';
+    z-index: 0;
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+  }
+}
+
 .request-form.is-loading .request-form__submit {
   pointer-events: none;
   opacity: 0.8;

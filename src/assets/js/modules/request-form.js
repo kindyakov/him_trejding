@@ -13,6 +13,24 @@ const bindFileInput = (fileInput, fileName) => {
   });
 };
 
+const linkInputLabel = (fileInput) => {
+  const field = fileInput.parentNode;
+  const uniqueId = `file-input-${crypto.randomUUID?.() ?? Date.now().toString(36)}`;
+
+  if (!field) {
+    return;
+  }
+
+  fileInput.id = uniqueId;
+
+  const label = field.querySelector('label');
+  if (!label) {
+    return;
+  }
+
+  label.setAttribute('for', uniqueId);
+};
+
 const getFieldSelector = (formId, name) => `#${formId} [name="${name}"]`;
 const syncFloatingLabelState = (input) => {
   const field = input.closest('.request-form__field');
@@ -61,6 +79,7 @@ export const initRequestForms = (dialog) => {
     const fileInput = form.querySelector('.request-form__file-input');
     const fileName = form.querySelector('[data-file-name]');
     const submitButton = form.querySelector('.request-form__submit');
+    const checkboxInput = form.querySelector('[type="checkbox"]')
 
     if (!fileInput || !fileName || !submitButton) {
       return;
@@ -71,6 +90,8 @@ export const initRequestForms = (dialog) => {
     }
 
     bindFileInput(fileInput, fileName);
+    linkInputLabel(fileInput);
+    linkInputLabel(checkboxInput);
     bindFloatingLabels(form);
 
     const formId = form.id;
