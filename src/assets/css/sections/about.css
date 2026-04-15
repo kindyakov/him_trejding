@@ -13,7 +13,6 @@
 }
 
 .about__title {
-  max-width: 911px;
   margin-top: 16px;
 
   @media (max-width: 1400px) {

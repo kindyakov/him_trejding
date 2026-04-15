@@ -27,7 +27,7 @@
 }
 
 .why-choose__headline {
-  max-width: 1171px;
+  flex: auto;
 }
 
 .why-choose__title {
