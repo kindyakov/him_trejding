@@ -2,7 +2,7 @@ import AOS from 'aos';
 import { initMenu } from './modules/menu';
 import { initHeaderScroll } from './modules/header-scroll';
 import { initActivityTimeline } from './modules/activity-timeline';
-import { initDocumentsSlider } from './modules/documents-slider';
+import { initDocumentsSlider } from './modules/documents-slider.mjs';
 import { initHeroVideo } from './modules/hero-video.mjs';
 import { initHistorySlider } from './modules/history-slider';
 import { initRequestPriceModal } from './modules/modal';
