@@ -1,6 +1,5 @@
 import IMask from 'imask';
 import JustValidate from 'just-validate';
-import { submitRequestPrice } from '../api/mock-request';
 import { showErrorToast, showSuccessToast } from './toast';
 
 const PHONE_MASK_OPTIONS = {
@@ -118,8 +117,8 @@ export const initRequestForms = (dialog) => {
       .addField(getFieldSelector(formId, 'company'), [
         {
           rule: 'minLength',
-          value: 10,
-          errorMessage: 'Минимум 10 символов'
+          value: 2,
+          errorMessage: 'Минимум 2 символов'
         }
       ])
       .addField(getFieldSelector(formId, 'message'), [
@@ -143,7 +142,15 @@ export const initRequestForms = (dialog) => {
         submitButton.classList.add('is-busy');
 
         try {
-          await submitRequestPrice(formData);
+          const response = await fetch(chimtrejdingAjax.url, {
+            method: 'POST',
+            body: formData
+          });
+
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+
           form.reset();
           if (phoneMask) {
             phoneMask.value = '';
