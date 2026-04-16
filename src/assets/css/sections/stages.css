@@ -45,6 +45,12 @@
   }
 }
 
+.сategories-our-partners .stages__picture {
+  @media (max-width: 1600px) {
+    justify-content: flex-start;
+  }
+}
+
 .stages__background {
   object-fit: cover;
   width: 100%;
@@ -112,6 +118,10 @@
   gap: 0;
   margin-top: 0;
   padding: 0 32px;
+
+  @media (max-width: 920px) {
+    padding-inline: 0;
+  }
 }
 
 .stages__item {
@@ -155,6 +165,7 @@
 
   @media (max-width: 920px) {
     padding: 16px 0;
+    justify-content: space-between;
 
     &:first-child {
       border-top: none;
